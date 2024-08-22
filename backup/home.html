@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Gamarra Portfolio</title>
+    <!-- Link para o CSS do Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link para o CSS personalizado -->
+    <link href="{% static 'portfolio/styles.css' %}">
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'portfolio/python.png' %}" type="image/x-icon">
+
+</head>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        const modal = document.getElementById("image-modal");
+        const modalImg = document.getElementById("modal-image");
+        const closeBtn = document.getElementsByClassName("image-modal-close")[0];
+    
+        document.querySelectorAll(".skills-list a").forEach(function (skill) {
+            skill.addEventListener("click", function (event) {
+                event.preventDefault();
+                const imgSrc = this.getAttribute("data-image");
+                modal.style.display = "flex";
+                modalImg.src = imgSrc;
+            });
+        });
+    
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        };
+    
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+    });
+</script>
+    
+    
+
+<div id="image-modal" class="image-modal" style="display: none;">
+    <span class="image-modal-close">&times;</span>
+    <img class="image-modal-content" id="modal-image">
+</div>
+
+  
+
+<body>
+    <div class="navbar">
+        <div class="profile">
+            <img src="{% static 'portfolio/eu.jpg' %}" alt="Pedro Gamarra">
+            <h1>Pedro Gamarra</h1>
+             26 Years Old <br> From : São Paulo, Brazil
+        </div>
+        <div class="content">
+            <a href="https://github.com/pehgamarra" class="social-links">
+                <img src="{% static 'portfolio/github.png' %}" alt="GitHub"> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/pedro-gamarra-9b8162181/" class="social-links">
+                <img src="{% static 'portfolio/linkedln.png' %}" alt="LinkedIn"> LinkedIn
+            </a>
+            <a href="https://www.instagram.com/pehgamarra/" class="social-links">
+                <img src="{% static 'portfolio/instagram.png' %}" alt="Instagram"> Instagram
+            </a>
+            <a href="{% static 'portfolio/currículo Pedro Henrique Sobrinho Gamarra da Silva.docx' %}" class="btn btn-secondary btn-block mb-2">
+                Resume.pdf
+            </a>
+        </div>
+        <div class="skills">
+            <h2>Skills</h2>
+            <div class="skills-container">
+              <ul class="skills-list">
+                <li><a href="#" data-image="{% static 'portfolio/RestApi.jpg' %}">Python</a></li>
+                <li><a href="#" data-image="{% static 'portfolio/django.png' %}">Django3</a></li>
+                <li><a href="#" data-image="{% static 'portfolio/RestApi.jpg' %}">REST APIs with FLASK</li>
+                <li><a href="#" data-image="{% static 'portfolio/django.png' %}">MySQL</a></li>
+                <li><a href="#" data-image="{% static 'portfolio/django.png' %}">Data Analytics</a></li>
+                <li><a href="#" data-image="{% static 'portfolio/django.png' %}">Deep Learning (TensorFlow)</a></li>
+                <li><a href="#" data-image="{% static 'portfolio/django.png' %}">NLP with Python</a></li>
+            </ul>
+            <ul class="skills-list">
+                <li><a href="#" data-image="{% static 'portfolio/django.png' %}">Machine Learning</a></li>
+                <li><a href="#" data-image="{% static 'portfolio/django.png' %}">Reinforcement Learning</a></li>
+                <li><a href="#" data-image="{% static 'portfolio/Certificate_Design_Patterns_Python.jpg' %}">Design Patterns</a></li>
+                <li><a href="#" data-image="{% static 'portfolio/django.png' %}">Big O Notation</a></li>
+                <li><a href="#" data-image="{% static 'portfolio/django.png' %}">HTML</a></li>
+                <li><a href="#" data-image="{% static 'portfolio/django.png' %}">CSS</a></li>
+                <li><a href="#" data-image="{% static 'portfolio/java.jpg' %}">Java</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Scripts do Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
