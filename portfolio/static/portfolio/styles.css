@@ -12,7 +12,7 @@ html, body {
 }
 
 .styled-img {
-    width: 350px; 
+    width: 300px; 
     height: auto;
     clip-path: circle(50% at 50%);
 }
@@ -64,7 +64,30 @@ html, body {
     font-weight: 400; 
 }
 
+.download-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: #b1702075; 
+    border-radius: 5px;
+    padding: 8px 12px;
+    text-decoration: none; 
+    color: white;
+    font-size: 16px; 
+    transition: background-color 0.3s, box-shadow 0.3s,  transform 0.3s;
+    margin-top: 1em;
+}
 
+.download-button img {
+    width: 24px; 
+    height: 24px; 
+    margin-right: 8px; 
+}
+
+.download-button:hover {
+    background-color: #ff6f00; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transform: translateY(-20px);
+}
 
 
 
