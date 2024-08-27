@@ -113,16 +113,21 @@ html, body {
 
 .certificates-section {
     padding: 40px 0;
-    position: relative;
+    position: center;
     color: #cfa266;
+    width: auto;
+    height: auto;
+
 }
 
 .certificate-card {
     background-color: rgba(255, 255, 255, 0.1);
     width: 40vw;
     height: 35vh;
-    max-width: 90vw;
-    max-height: 90vh;
+    max-width: 40vw;
+    max-height: 30vh;
+    min-width: 10vw;
+    min-height: 35vh;
     padding: 15px;
     margin: 10px;
     border-radius: 8px;
@@ -279,8 +284,8 @@ html, body {
         padding: 10px;
         width: 30vw;
         height: 21vh;
-        max-width: 90vw;
-        max-height: 90vh;
+        max-width: 30vw;
+        max-height: 21vh;
     }
 
     .carousel-control-prev-icon, .carousel-control-next-icon {
@@ -302,8 +307,8 @@ html, body {
         padding: 10px;
         width: 30vw;
         height: 21vh;
-        max-width: 90vw;
-        max-height: 90vh;
+        max-width: 30vw;
+        max-height: 21vh;
     }
 
     .carousel-control-prev-icon, .carousel-control-next-icon {

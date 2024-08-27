@@ -13,7 +13,7 @@
         <link rel="icon" href="{% static 'portfolio/python.png' %}" type="image/x-icon">
         <style>
             body {
-                background-image: url("{% static 'portfolio/image.png' %}");
+                background-image: url("{% static 'portfolio/background.png' %}");
                 background-size: cover;
                 background-attachment: fixed;
                 background-repeat: no-repeat;
@@ -168,9 +168,21 @@
                         <div class="carousel-item">
                             <div class="row justify-content-center">
                                 <div class="col-md-3 d-flex justify-content-center" style ="width: 75%">
+                                    <div class="certificate-card text-center" data-toggle="modal" data-target="#certificateModal" data-image="{% static 'portfolio/nocertificated.png' %}">
+                                        <img src="{% static 'portfolio/git.png' %}" alt="Git" class="img-fluid mb-2">
+                                        <p>Git</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 d-flex justify-content-center" style ="width: 75%">
                                     <div class="certificate-card text-center" data-toggle="modal" data-target="#certificateModal" data-image="{% static 'portfolio/Certificate_Java.jpg' %}">
                                         <img src="{% static 'portfolio/java.png' %}" alt="Java" class="img-fluid mb-2">
                                         <p>Java</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 d-flex justify-content-center" style ="width: 75%">
+                                    <div class="certificate-card text-center" data-toggle="modal" data-target="#certificateModal" data-image="{% static 'portfolio/nocertificated.png' %}">
+                                        <img src="{% static 'portfolio/docker.png' %}" alt="Docker" class="img-fluid mb-2">
+                                        <p>Docker</p>
                                     </div>
                                 </div>
                             </div>
