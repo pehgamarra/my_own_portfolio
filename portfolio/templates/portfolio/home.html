@@ -37,7 +37,18 @@
                 });
             });
         });
-
+        document.addEventListener('DOMContentLoaded', function () {
+        $('#projectModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var videoSrc = button.data('video'); 
+            var modal = $(this);
+            modal.find('#projectVideo').attr('src', videoSrc);
+        });
+        $('#projectModal').on('hidden.bs.modal', function () {
+            var modal = $(this);
+            modal.find('#projectVideo').attr('src', '');
+        });
+    });
     </script>
 
     <body>
@@ -50,6 +61,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#about-me-section">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects-section">Projects</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#certificates-section">Certificates</a>
@@ -92,6 +106,27 @@
                 <span>Resume.pdf</span>
             </a>
         </div>
+
+        <!-- Projects Section -->
+        <div id="projects-section" class="container">
+            <h2>Projects</h2>
+            <div class="project-container">
+                <div class="project-card">
+                    <div class="project-image" data-toggle="modal" data-target="#projectModal" data-video="{% static 'portfolio/teste.mp4' %}">
+                        <img src="{% static 'portfolio/teste.png' %}" alt="Project 1">
+                    </div>
+                    <h3>Project 1</h3>
+                    <p>Description of Project 1 scripn of Project 1 scription of Project 1</p>
+                    <div class="project-footer">
+                        <p>Python, Numpy</p>
+                    </div>
+                </div>
+                <!-- Add more -->
+                 
+                 
+            </div>
+        </div>
+
 
         <!-- Certificates Section -->
         <div id="certificates-section" class="certificates-section">
@@ -169,8 +204,8 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-3 d-flex justify-content-center" style ="width: 75%">
                                     <div class="certificate-card text-center" data-toggle="modal" data-target="#certificateModal" data-image="{% static 'portfolio/nocertificated.png' %}">
-                                        <img src="{% static 'portfolio/git.png' %}" alt="Git" class="img-fluid mb-2">
-                                        <p>Git</p>
+                                        <img src="{% static 'portfolio/powerBi.png' %}" alt="Git" class="img-fluid mb-2">
+                                        <p>Power Bi</p>
                                     </div>
                                 </div>
                                 <div class="col-md-3 d-flex justify-content-center" style ="width: 75%">
@@ -222,7 +257,10 @@
                         <li>Flask</li>
                         <li>Git</li>
                         <li>Docker</li>
-                        <li>TensorFlow</li>
+                        <li>Pandas</li>
+                        <li>Numpy</li>
+                        <li>YOLO</li>
+                        <li>Matplotlib & Seaborn</li>
                     </ul>
                 </div>
                 <!-- Tools and Technologies -->
@@ -234,6 +272,7 @@
                         <li>Big O' Notation</li>
                         <li>Clean Architecture</li>
                         <li>Agile Methodology</li>
+                        <li>Statistics for Data Science</li>
                     </ul>
                 </div>
                 <!-- Interpersonal Skills -->
@@ -297,7 +336,7 @@
             </div>
         </div>
 
-         <!-- Modal -->
+         <!-- Image Modal -->
         <div class="modal fade" id="certificateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -305,6 +344,17 @@
                 </div>
             </div>
         </div>
+        <!-- Modal Vídeo -->
+        <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <video id="projectVideo" controls></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <!-- Scripts do Bootstrap -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
