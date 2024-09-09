@@ -195,29 +195,6 @@ html, body {
 }
 
 
-/* Modal video */
-.modal-dialog {
-    max-width: 900px;
-    margin: 30px auto;
-}
-
-.modal-content {
-    background-color: transparent; /* Fundo transparente */
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-}
-
-.modal-body {
-    padding: 0;
-}
-
-#projectVideo {
-    width: 100%;
-    height: auto;
-    border-radius: 0;
-}
-
 /*Certificated section */
 .certificates-section {
     padding: 40px 0;
@@ -289,7 +266,7 @@ html, body {
     box-shadow: 0px 0px 25px rgba(6, 199, 233, 0.7);
 }
 
-/* modal image */
+/* modal */
 .modal-dialog {
     width: 90vw;
     height: 90vh;
@@ -313,6 +290,16 @@ html, body {
     height: auto;
     max-height: 90vh;
     object-fit: contain;
+}
+/*modal video */
+#projectVideo {
+    width: 70vw;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: -15vw;
 }
 
 #soft-skills-section {
@@ -410,6 +397,16 @@ html, body {
     }
     .skills-container {
         flex-direction: column;
+    }
+
+    #projectVideo{
+        width: 70vw;
+        height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        left: 25px;
     }
 }
 
