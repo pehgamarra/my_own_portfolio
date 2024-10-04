@@ -36,6 +36,36 @@ html, body {
     align-items: center;
 }
 
+/*language selection */
+
+#language-switcher {
+    display: flex;
+    gap: 10px; 
+}
+
+.language-button {
+    background-color: #f0f0f000;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.language-button img {
+    width: 20px;
+    height: 15px;
+    margin-right: 5px; 
+}
+
+.language-button:hover {
+    background-color: rgba(255, 166, 0, 0.555); 
+    border-color:deepskyblue ;
+}
+
+
 /* About Me Section */
 #about-me-section {
     background-color: rgba(0, 0, 0, 0.5);
