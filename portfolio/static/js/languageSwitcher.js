@@ -3,6 +3,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     const englishButton = document.getElementById('english-button');
     const portugueseButton = document.getElementById('portuguese-button');
+    const englishButton1 = document.getElementById('english-button1');
+    const portugueseButton1 = document.getElementById('portuguese-button1');
     
     const translations = {
         pt: {
@@ -89,6 +91,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     portugueseButton.addEventListener('click', function () {
+        currentLanguage = 'pt';
+        updateTranslations();
+    });
+    englishButton1.addEventListener('click', function () {
+        currentLanguage = 'en';
+        updateTranslations();
+    });
+
+    portugueseButton1.addEventListener('click', function () {
         currentLanguage = 'pt';
         updateTranslations();
     });

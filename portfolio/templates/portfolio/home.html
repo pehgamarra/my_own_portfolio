@@ -50,43 +50,56 @@
         });
     });
     </script>
-    <body>        
+    <body> 
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home-section" data-translate="Início">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about-me-section" data-translate="Sobre">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#projects-section" data-translate="Projetos">Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#certificates-section" data-translate="Certificados">Certificates</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#soft-skills-section" data-translate="Habilidades">Skills</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact-section" data-translate="Contato">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                            <button id="english-button" class="language-button">
+            <div class="container-fluid">
+                <!-- Hamburguer for mobiles -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#home-section" data-translate="Início">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about-me-section" data-translate="Sobre">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#projects-section" data-translate="Projetos">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#certificates-section" data-translate="Certificados">Certificates</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#soft-skills-section" data-translate="Habilidades">Skills</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact-section" data-translate="Contato">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <button id="english-button" class="language-button d-none d-lg-block">
                                 <img src="{% static 'portfolio/USA.png' %}" alt="English" />
                             </button>
                         </li>
                         <li class="nav-item">
-                            <button id="portuguese-button" class="language-button">
+                            <button id="portuguese-button" class="language-button d-none d-lg-block">
                                 <img src="{% static 'portfolio/BR.png' %}" alt="Português" />
                             </button>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </nav>
-        
+        </nav>                            
+
+            <button id="english-button1" class="language-button d-lg-none">
+                <p style="color: #cfa266;"> <img src="{% static 'portfolio/USA.png' %}" alt="English" />English site</p>
+            </button>
+            <button id="portuguese-button1" class="language-button d-lg-none">
+                <p style="color: #cfa266;"> <img src="{% static 'portfolio/BR.png' %}" alt="Português" />Portuguese site</p>
+            </button>
+            
         <!-- Main Content -->
         <div id="home-section" class="container my-5 main-content">
             <div class="row align-items-center">
@@ -119,6 +132,7 @@
                 <span data-translate="Meu Curriculo.PDF" >Resume.pdf</span>
             </a>
         </div>
+        
         <!-- Projects Section -->
         <div id="projects-section" class="container">
             <h2 data-translate="Projetos">Projects</h2>
@@ -372,6 +386,7 @@
         <!-- Scripts do Bootstrap -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         <!-- Switch language-->
