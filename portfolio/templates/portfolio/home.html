@@ -5,9 +5,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Pedro Gamarra Portfolio</title>
-        <!-- Link para o CSS do Bootstrap -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Link para o CSS personalizado -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link href="{% static 'portfolio/styles.css' %}" rel="stylesheet">
         <!-- Favicon -->
         <link rel="icon" href="{% static 'portfolio/python.png' %}" type="image/x-icon">
@@ -40,7 +39,7 @@
         document.addEventListener('DOMContentLoaded', function () {
         $('#projectModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            var videoSrc = button.data('video'); 
+            var videoSrc = button.data('video');
             var modal = $(this);
             modal.find('#projectVideo').attr('src', videoSrc);
         });
@@ -50,7 +49,7 @@
         });
     });
     </script>
-    <body> 
+    <body>
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
             <div class="container-fluid">
@@ -91,7 +90,7 @@
                     </ul>
                 </div>
             </div>
-        </nav>                            
+        </nav>
 
             <button id="english-button1" class="language-button d-lg-none">
                 <p style="color: #cfa266;"> <img src="{% static 'portfolio/USA.png' %}" alt="English" />English</p>
@@ -99,7 +98,7 @@
             <button id="portuguese-button1" class="language-button d-lg-none">
                 <p style="color: #cfa266;"> <img src="{% static 'portfolio/BR.png' %}" alt="Português" />Portugues</p>
             </button>
-            
+
         <!-- Main Content -->
         <div id="home-section" class="container my-5 main-content">
             <div class="row align-items-center">
@@ -117,22 +116,22 @@
         <!-- About Me Section -->
         <div id="about-me-section" class="container text-center my-5 ">
             <h2 data-translate="Sobre Mim">About Me</h2>
-            <p data-translate="Sou um estudante de programação dedicado com um forte interesse nos mercados financeiro e tecnológico. 
-                            Apaixonado por inteligência artificial, sou também um aprendiz autodidata, 
-                            buscando continuamente expandir meu conhecimento e habilidades neste campo dinâmico. 
-                            Meu entusiasmo por tecnologia me impulsiona a explorar novos desafios e inovar no 
+            <p data-translate="Sou um estudante de programação dedicado com um forte interesse nos mercados financeiro e tecnológico.
+                            Apaixonado por inteligência artificial, sou também um aprendiz autodidata,
+                            buscando continuamente expandir meu conhecimento e habilidades neste campo dinâmico.
+                            Meu entusiasmo por tecnologia me impulsiona a explorar novos desafios e inovar no
                             sempre em evolução do mundo da programação.">
-                I am a dedicated programming student with a strong interest in the financial and technological markets. 
-                Passionate about artificial intelligence, I am also a keen self-learner, 
-                continuously seeking to expand my knowledge and skills in this dynamic field. 
+                I am a dedicated programming student with a strong interest in the financial and technological markets.
+                Passionate about artificial intelligence, I am also a keen self-learner,
+                continuously seeking to expand my knowledge and skills in this dynamic field.
                 My enthusiasm for technology drives me to explore new challenges and innovate in the ever-evolving landscape of programming.
             </p>
             <a href="{% static 'portfolio/Pedro_Gamarra_resume.pdf' %}" download class="download-button">
-                <img src="{% static 'portfolio/pdf.png' %}" alt="Download Resume">
-                <span data-translate="Meu Curriculo.PDF" >Resume.pdf</span>
+                <span data-translate="Meu Curriculo.PDF" >Resume.pdf </span>
+                <i class="bi bi-cloud-arrow-down-fill"></i>
             </a>
         </div>
-        
+
         <!-- Projects Section -->
         <div id="projects-section" class="container">
             <h2 data-translate="Projetos">Projects</h2>
@@ -144,13 +143,26 @@
                     <h3>Hotel REST API</h3>
                     <p style = "text-align: justify;"data-translate="Esta API REST permite armazenar hotéis em sites individuais e vários sites dentro de um site principal, funcionando como uma ferramenta de busca para encontrar o melhor hotel.">
                         This REST API enables storing hotels within individual sites and multiple sites within a main site, functioning as a search tool to find the best hotel.
-                    </p>                   
+                    </p>
+                        <a href="https://github.com/pehgamarra/Hotel_REST_API">GitHub <i class="bi bi-link-45deg"></i></a>
                     <div class="project-footer">
                         <p>| Python | Flask | REST API | </p>
                     </div>
                 </div>
                 <!-- Add more -->
-                 
+                <div class="project-card">
+                    <div class="project-image" data-toggle="modal" data-target="#projectModal" data-video="{% static 'portfolio/project_RESTAPI.mp4' %}">
+                        <img src="{% static 'portfolio/restapi.png' %}" alt="Project 2">
+                    </div>
+                    <h3>E-commerce SmartPhone Store</h3>
+                    <p style = "text-align: justify;"data-translate="Um site de e-commerce para venda de celulares, com um catálogo diversificado e um carrinho de compras que permite aos usuários adicionar e remover produtos. A simulação de compras é integrada ao estoque, evitando compras de itens indisponíveis. Os usuários também podem deixar avaliações para os produtos. O painel administrativo possibilita o gerenciamento de pedidos, acompanhamento de vendas e geração de relatórios com gráficos.">
+                        An e-commerce site for selling mobile phones with a diverse catalog and a shopping cart that allows users to add and remove products. The shopping simulation is integrated with the inventory, preventing purchases of unavailable items. Users can also leave reviews for products. The admin panel enables order management, sales tracking, and report generation with graphs.
+                    </p>
+                        <a href="https://github.com/pehgamarra/e-commerce-django-mysql">GitHub <i class="bi bi-link-45deg"></i></a>
+                    <div class="project-footer">
+                        <p>| Python | Django | MySQL | Matplotlib | HTML | CSS | JS |</p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -234,7 +246,7 @@
                                         <img src="{% static 'portfolio/powerBi.png' %}" alt="Git" class="img-fluid mb-2">
                                         <p>Power Bi</p>
                                     </div>
-                                </div> 
+                                </div>
                                 <div class="col-md-3 d-flex justify-content-center" style ="width: 75%">
                                     <div class="certificate-card text-center" data-toggle="modal" data-target="#certificateModal" data-image="{% static 'portfolio/nocertificated.png' %}">
                                         <img src="{% static 'portfolio/da.png' %}" alt="Data Analytics" class="img-fluid mb-2">
@@ -274,6 +286,7 @@
                         <li>Python</li>
                         <li>Java</li>
                         <li>MySQL</li>
+                        <li>Html/ CSS/ JS</li>
                     </ul>
                 </div>
                 <!-- Frameworks and Libraries -->
@@ -283,6 +296,7 @@
                         <li>Django</li>
                         <li>Flask</li>
                         <li>Git</li>
+                        <li>AWS</li>
                         <li>Docker</li>
                         <li>Pandas</li>
                         <li>Numpy</li>
@@ -300,7 +314,7 @@
                         <li data-translate="Arquitetura Limpa">Clean Architecture</li>
                         <li data-translate="Metodologia Ágil">Agile Methodology</li>
                         <li data-translate="Estatísticas para Ciência de Dados">Statistics for Data Science</li>
-                        
+
                     </ul>
                 </div>
                 <!-- Interpersonal Skills -->
