@@ -15,11 +15,13 @@ document.addEventListener('DOMContentLoaded', function () {
             "Skills": "Habilidades",
             "Contact": "Contato",
             "26 Years": "26 Anos",
+            "Back-End Developer":"Desenvolvedor Back-End",
             "About Me": "Sobre Mim",
-            "Resume.pdf": "Meu Curriculo.PDF",
-            "I am a dedicated programming student with a strong interest in the financial and technological markets. Passionate about artificial intelligence, I am also a keen self-learner, continuously seeking to expand my knowledge and skills in this dynamic field. My enthusiasm for technology drives me to explore new challenges and innovate in the ever-evolving landscape of programming.":
-                "Sou um estudante de programação dedicado com um forte interesse nos mercados financeiro e tecnológico. Apaixonado por inteligência artificial, sou também um aprendiz autodidata, buscando continuamente expandir meu conhecimento e habilidades neste campo dinâmico. Meu entusiasmo por tecnologia me impulsiona a explorar novos desafios e inovar no sempre em evolução do mundo da programação.",
+            "Download Resume": "Baixar Curriculo",
+            "I am a dedicated back-end developer with a strong interest in the financial and technological markets. Passionate about artificial intelligence, I am also a keen self-learner, continuously seeking to expand my knowledge and skills in this dynamic field. My enthusiasm for technology drives me to explore new challenges and innovate in the ever-evolving landscape of programming.":
+                "Sou um programador back-end dedicado com um forte interesse nos mercados financeiro e tecnológico. Apaixonado por inteligência artificial, sou também um aprendiz autodidata, buscando continuamente expandir meu conhecimento e habilidades neste campo dinâmico. Meu entusiasmo por tecnologia me motiva a buscar novos desafios e criar soluções inovadoras, acompanhando as mudanças constantes no mundo da programação",
             "Certificated Skills": "Cursos certificados",
+            "Soft Skills":"Habilidades",
             "Programming Languages": "Linguagens de Programação",
             "Frameworks & Libraries": "Frameworks e Bibliotecas",
             "Development Principles": "Princípios de Desenvolvimento",
@@ -51,11 +53,13 @@ document.addEventListener('DOMContentLoaded', function () {
             "Habilidades": "Skills",
             "Contato": "Contact",
             "26 Anos": "26 Years",
+            "Desenvolvedor Back-End":"Back-End Developer",
             "Sobre Mim": "About Me",
-            "Meu Curriculo.PDF": "Resume.pdf",
-            "Sou um estudante de programação dedicado com um forte interesse nos mercados financeiro e tecnológico. Apaixonado por inteligência artificial, sou também um aprendiz autodidata, buscando continuamente expandir meu conhecimento e habilidades neste campo dinâmico. Meu entusiasmo por tecnologia me impulsiona a explorar novos desafios e inovar no sempre em evolução do mundo da programação.":
-                "I am a dedicated programming student with a strong interest in the financial and technological markets. Passionate about artificial intelligence, I am also a keen self-learner, continuously seeking to expand my knowledge and skills in this dynamic field. My enthusiasm for technology drives me to explore new challenges and innovate in the ever-evolving landscape of programming.",
+            "Baixar Curriculo": "Download Resume",
+            "Sou um programador back-end dedicado com um forte interesse nos mercados financeiro e tecnológico. Apaixonado por inteligência artificial, sou também um aprendiz autodidata, buscando continuamente expandir meu conhecimento e habilidades neste campo dinâmico. Meu entusiasmo por tecnologia me motiva a buscar novos desafios e criar soluções inovadoras, acompanhando as mudanças constantes no mundo da programação":
+                "I am a dedicated back-end developer with a strong interest in the financial and technological markets. Passionate about artificial intelligence, I am also a keen self-learner, continuously seeking to expand my knowledge and skills in this dynamic field. My enthusiasm for technology drives me to explore new challenges and innovate in the ever-evolving landscape of programming.",
             "Cursos certificados": "Certificated Skills",
+            "Habilidades":"Soft Skills",
             "Linguagens de Programação": "Programming Languages",
             "Frameworks e Bibliotecas": "Frameworks & Libraries",
             "Princípios de Desenvolvimento": "Development Principles",
