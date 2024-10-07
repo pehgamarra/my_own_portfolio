@@ -8,6 +8,8 @@
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link href="{% static 'portfolio/styles.css' %}" rel="stylesheet">
+        <link href="{% static 'portfolio/popupstyle.css' %}" rel="stylesheet">
+
         <!-- Favicon -->
         <link rel="icon" href="{% static 'portfolio/python.png' %}" type="image/x-icon">
         <style>
@@ -137,34 +139,49 @@
             <h2 data-translate="Projetos">Projects</h2>
             <div class="project-container">
                 <div class="project-card">
-                    <div class="project-image" data-toggle="modal" data-target="#projectModal" data-video="{% static 'portfolio/project_RESTAPI.mp4' %}">
+                    <div class="project-image" data-video-url="{% static 'portfolio/project_RESTAPI.mp4' %}" onclick="openVideoPopup(this.getAttribute(data-video-url))">
                         <img src="{% static 'portfolio/restapi.png' %}" alt="Project 1">
-                    </div>
+                        <div class="overlay">
+                            <span class="overlay-text" data-translate="Mais detalhes...">Show more...</span>
+                        </div>
+                    </div>                    
                     <h3>Hotel REST API</h3>
-                    <p style = "text-align: justify;"data-translate="Esta API REST permite armazenar hotéis em sites individuais e vários sites dentro de um site principal, funcionando como uma ferramenta de busca para encontrar o melhor hotel.">
+                    <p style="display: none;" data-translate="Esta API REST permite armazenar hotéis em sites individuais e vários sites dentro de um site principal, funcionando como uma ferramenta de busca para encontrar o melhor hotel.">
                         This REST API enables storing hotels within individual sites and multiple sites within a main site, functioning as a search tool to find the best hotel.
                     </p>
-                        <a href="https://github.com/pehgamarra/Hotel_REST_API">GitHub <i class="bi bi-link-45deg"></i></a>
-                    <div class="project-footer">
-                        <p>| Python | Flask | REST API | </p>
-                    </div>
+                    <a style="display: none;" href="https://github.com/pehgamarra/Hotel_REST_API">GitHub <i class="bi bi-link-45deg"></i></a>
+                    <p style="display: none;">| Python | Flask | REST API | </p>
                 </div>
-                <!-- Add more -->
                 <div class="project-card">
-                    <div class="project-image" data-toggle="modal" data-target="#projectModal" data-video="{% static 'portfolio/project_RESTAPI.mp4' %}">
-                        <img src="{% static 'portfolio/restapi.png' %}" alt="Project 2">
-                    </div>
-                    <h3>E-commerce SmartPhone Store</h3>
-                    <p style = "text-align: justify;"data-translate="Um site de e-commerce para venda de celulares, com um catálogo diversificado e um carrinho de compras que permite aos usuários adicionar e remover produtos. A simulação de compras é integrada ao estoque, evitando compras de itens indisponíveis. Os usuários também podem deixar avaliações para os produtos. O painel administrativo possibilita o gerenciamento de pedidos, acompanhamento de vendas e geração de relatórios com gráficos.">
+                    <div class="project-image" data-video-url="{% static 'portfolio/e-commerce.mp4' %}" onclick="openVideoPopup(this.getAttribute('data-video-url'))">
+                        <img src="{% static 'portfolio/e-commerce.png' %}" alt="Project 2">
+                        <div class="overlay">
+                            <span class="overlay-text" data-translate="Mais detalhes...">Show more...</span>
+                        </div>
+                    </div>                   
+                    <h3 >E-commerce Store</h3>
+                    <p style="display: none;" data-translate="Um site de e-commerce para venda de celulares, com um catálogo diversificado e um carrinho de compras que permite aos usuários adicionar e remover produtos. A simulação de compras é integrada ao estoque, evitando compras de itens indisponíveis. Os usuários também podem deixar avaliações para os produtos. O painel administrativo possibilita o gerenciamento de pedidos, acompanhamento de vendas e geração de relatórios com gráficos.">
                         An e-commerce site for selling mobile phones with a diverse catalog and a shopping cart that allows users to add and remove products. The shopping simulation is integrated with the inventory, preventing purchases of unavailable items. Users can also leave reviews for products. The admin panel enables order management, sales tracking, and report generation with graphs.
                     </p>
-                        <a href="https://github.com/pehgamarra/e-commerce-django-mysql">GitHub <i class="bi bi-link-45deg"></i></a>
-                    <div class="project-footer">
-                        <p>| Python | Django | MySQL | Matplotlib | HTML | CSS | JS |</p>
+                    <a style="display: none;" href="https://github.com/pehgamarra/e-commerce-django-mysql">GitHub <i class="bi bi-link-45deg"></i></a>
+                    <p style="display: none;">| Python | Django | MySQL | Matplotlib | HTML | CSS | JS |</p>
+                </div>
+            </div>
+
+            <!-- Popup for Project Details -->
+            <div id="projectPopup" class="project-popup" style="display: none">
+                <div class="popup-content">
+                    <span class="close" id="popupClose">&times;</span>
+                    <video id="popupVideo" controls></video>
+                    <div id="popupInfo">
+                        <h3 id="popupTitle"></h3>
+                        <p id="popupDescription"></p>
+                        <h4 id ="popupH4"> Languages & Frameworks:</h4>
+                        <p id="popupFooter"></p>
+                        <a id="popupGitHubLink" href="#" target="_blank">GitHub <i class="bi bi-link-45deg"></i></a>
                     </div>
                 </div>
             </div>
-        </div>
 
 
         <!-- Certificates Section -->
@@ -385,17 +402,6 @@
                 </div>
             </div>
         </div>
-        <!-- Modal Vídeo -->
-        <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <video id="projectVideo" controls></video>
-                    </div>
-                </div>
-            </div>
-        </div>
-
 
         <!-- Scripts do Bootstrap -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -405,6 +411,7 @@
 
         <!-- Switch language-->
         <script src="{% static 'js/languageSwitcher.js' %}"></script>
+        <script src="{% static 'js/popup.js' %}"></script>
 
     </body>
 </html>

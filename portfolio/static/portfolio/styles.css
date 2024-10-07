@@ -160,18 +160,20 @@ html, body {
 
 .project-card {
     background-color: #2c2c2e;
-    border: 1px solid #cfa266;
+    border: 2px solid #cfa266;
     border-radius: 10px;
     margin: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
-    width: 300px; /* Largura fixa */
+    width: 300px;
     text-align: center;
+    position: relative;
 }
 
 .project-image {
     position: relative;
     cursor: pointer;
+    display: inline-block;
 }
 
 .project-image img {
@@ -179,16 +181,38 @@ html, body {
     border-radius: 5px;
     transition: transform 0.3s ease, filter 0.3s ease;
 }
+.overlay {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    opacity: 0;
+    transition: opacity 0.3s ease; 
+}
 
-/* Escurecer a imagem ao passar o mouse */
+.project-image:hover .overlay {
+    opacity: 1;
+}
+
+.overlay-text {
+    color: white;
+    font-size: 1.3rem; 
+    text-align: center; 
+}
+
 .project-image:hover img {
     transform: scale(1.05);
     filter: brightness(50%);
 }
 
 .project-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 5px 10px rgba(233, 116, 6, 0.7);
 }
 
 .project-card h3 {
@@ -321,16 +345,6 @@ html, body {
     height: auto;
     max-height: 90vh;
     object-fit: contain;
-}
-/*modal video */
-#projectVideo {
-    width: 70vw;
-    height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    left: -15vw;
 }
 
 #soft-skills-section {
