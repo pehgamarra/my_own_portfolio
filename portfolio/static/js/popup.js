@@ -18,23 +18,50 @@ projectImages.forEach((image) => {
         popupVideo.src = videoSrc; 
         popupTitle.innerText = title; 
         popupDescription.innerText = description; 
-        popupFooter.innerText = footer
+        popupFooter.innerText = footer;
         popupGitHubLink.href = githubLink;
 
+        addOverlay();
         projectPopup.style.display = 'block'; 
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
     });
 });
 
-popupClose.addEventListener('click', () => {
+function addOverlay() {
+    const overlay = document.createElement('div');
+    overlay.id = 'popup-overlay';
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    overlay.style.zIndex = '999'; // Make sure this is below the popup's z-index
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener('click', (event) => {
+        if (event.target === overlay) {
+            closePopup();
+        }
+    });
+}
+
+function closePopup() {
     projectPopup.style.display = 'none';
     popupVideo.pause(); 
     popupVideo.src = ''; 
-});
-
-window.addEventListener('click', (event) => {
-    if (event.target === projectPopup) {
-        projectPopup.style.display = 'none';
-        popupVideo.pause(); 
-        popupVideo.src = ''; 
+    document.body.style.overflow = ''; // Restore scrolling
+    const overlay = document.getElementById('popup-overlay');
+    if (overlay) {
+        overlay.remove();
     }
-});
+}
+
+popupClose.addEventListener('click', closePopup);
+
+// Remove this event listener as it's no longer needed
+// window.addEventListener('click', (event) => {
+//     if (event.target === projectPopup) {
+//         closePopup();
+//     }
+// });

@@ -44,6 +44,13 @@ document.addEventListener('DOMContentLoaded', function () {
             ,
             "This REST API enables storing hotels within individual sites and multiple sites within a main site, functioning as a search tool to find the best hotel.": 
                 "Esta API REST permite armazenar hotéis em sites individuais e vários sites dentro de um site principal, funcionando como uma ferramenta de busca para encontrar o melhor hotel.",
+            "Contact Me": "Entre em Contato",
+            "Check my Github": "Veja meu Github",
+            "Send me a E-mail": "Envie-me um E-mail",
+            "Text me on Whatsapp": "Mande-me uma mensagem no Whatsapp",
+            "Call me on LinkedIn": "Chame-me no LinkedIn",
+            "AI-Enhanced Productivity": "Produtividade Aprimorada por IA",
+            "Translate":"Traduzir"
         },
         en: {
             "Início": "Home",
@@ -81,6 +88,13 @@ document.addEventListener('DOMContentLoaded', function () {
             "An e-commerce site for selling mobile phones with a diverse catalog and a shopping cart that allows users to add and remove products. The shopping simulation is integrated with the inventory, preventing purchases of unavailable items. Users can also leave reviews for products. The admin panel enables order management, sales tracking, and report generation with graphs.",
             "Esta API REST permite armazenar hotéis em sites individuais e vários sites dentro de um site principal, funcionando como uma ferramenta de busca para encontrar o melhor hotel.": 
                 "This REST API enables storing hotels within individual sites and multiple sites within a main site, functioning as a search tool to find the best hotel.",
+            "Entre em Contato": "Contact Me",
+            "Veja meu Github": "Check my Github",
+            "Envie-me um E-mail": "Send me a E-mail",
+            "Mande-me uma mensagem no Whatsapp": "Text me on Whatsapp",
+            "Chame-me no LinkedIn": "Call me on LinkedIn",
+            "Produtividade Aprimorada por IA": "AI-Enhanced Productivity",
+            "Traduzir":"Translate"
         },
     };
     
@@ -91,7 +105,16 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('[data-translate]').forEach(element => {
             const key = element.innerText.trim();
             if (translations[currentLanguage][key]) {
-                element.innerText = translations[currentLanguage][key];
+                if (element.classList.contains('skill-item')) {
+                    // Para elementos 'skill-item', atualizamos apenas o texto dentro de 'skill-name'
+                    const skillName = element.querySelector('.skill-name');
+                    if (skillName) {
+                        skillName.textContent = translations[currentLanguage][key];
+                    }
+                } else {
+                    // Para todos os outros elementos, atualizamos o conteúdo
+                    element.innerHTML = translations[currentLanguage][key];
+                }
             }
         });
     }

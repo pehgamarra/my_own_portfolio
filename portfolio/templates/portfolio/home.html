@@ -7,50 +7,13 @@
         <title>Pedro Gamarra Portfolio</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
         <link href="{% static 'portfolio/styles.css' %}" rel="stylesheet">
-        <link href="{% static 'portfolio/popupstyle.css' %}" rel="stylesheet">
 
         <!-- Favicon -->
         <link rel="icon" href="{% static 'portfolio/python.png' %}" type="image/x-icon">
-        <style>
-            body {
-                background-image: url("{% static 'portfolio/background.png' %}");
-                background-size: cover;
-                background-attachment: fixed;
-                background-repeat: no-repeat;
-                background-position: center;
-                color: rgb(255, 255, 255);
-                min-height: 100vh;
-                margin: 0;
-            }
-        </style>
     </head>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.querySelectorAll('.certificate-card').forEach(item => {
-                item.addEventListener('click', function () {
-                    var imgSrc = this.getAttribute('data-image');
-                    var modalImage = document.getElementById('modalImage');
-                    if (modalImage) {
-                        modalImage.src = imgSrc;
-                    }
-                });
-            });
-        });
-        document.addEventListener('DOMContentLoaded', function () {
-        $('#projectModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var videoSrc = button.data('video');
-            var modal = $(this);
-            modal.find('#projectVideo').attr('src', videoSrc);
-        });
-        $('#projectModal').on('hidden.bs.modal', function () {
-            var modal = $(this);
-            modal.find('#projectVideo').attr('src', '');
-        });
-    });
-    </script>
     <body>
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
@@ -61,9 +24,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#home-section" data-translate="Início">Home</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#about-me-section" data-translate="Sobre">About</a>
                         </li>
@@ -79,17 +39,18 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#contact-section" data-translate="Contato">Contact</a>
                         </li>
-                        <li class="nav-item">
-                            <button id="english-button" class="language-button d-none d-lg-block">
-                                <img src="{% static 'portfolio/USA.png' %}" alt="English" />
-                            </button>
-                        </li>
-                        <li class="nav-item">
-                            <button id="portuguese-button" class="language-button d-none d-lg-block">
-                                <img src="{% static 'portfolio/BR.png' %}" alt="Português" />
-                            </button>
-                        </li>
                     </ul>
+                </div>
+                <div class="language-switcher">
+                    <span class="language-text">
+                        <i class="bi bi-globe"></i> <span data-translate="Traduzir">Translate</span>
+                    </span>
+                    <button class="language-button" id="english-button">
+                        <img src="{% static 'portfolio/USA.png' %}" alt="English">
+                    </button>
+                    <button class="language-button" id="portuguese-button">
+                        <img src="{% static 'portfolio/BR.png' %}" alt="Português">
+                    </button>
                 </div>
             </div>
         </nav>
@@ -101,296 +62,516 @@
                 <p style="color: #cfa266;"> <img src="{% static 'portfolio/BR.png' %}" alt="Português" />Portugues</p>
             </button>
 
-        <!-- Main Content -->
-        <div id="home-section" class="container my-5 main-content">
-            <div class="row align-items-center">
-                <div class="col-md-4 d-flex justify-content-center">
-                    <img src="{% static 'portfolio/eu.png' %}" class="img-fluid styled-img mb-3" alt="Pedro Gamarra">
-                </div>
-                <div class="col-md-8">
-                    <h1>Pedro Gamarra</h1>
-                    <h5>São Paulo, BR</h5>
-                    <h5 data-translate="26 Anos">26 Years</h5>
-                    <h5 data-translate="Desenvolvedor Back-End">Back-End Developer</h5>
-                </div>
-            </div>
-        </div>
-
-        <!-- About Me Section -->
-        <div id="about-me-section" class="container text-center my-5 ">
-            <h2 data-translate="Sobre Mim">About Me</h2>
-            <p data-translate="Sou um programador back-end dedicado com um forte interesse nos mercados financeiro e tecnológico.
-                            Apaixonado por inteligência artificial, sou também um aprendiz autodidata,
-                            buscando continuamente expandir meu conhecimento e habilidades neste campo dinâmico.
-                            Meu entusiasmo por tecnologia me motiva a buscar novos desafios e criar soluções inovadoras, 
-                            acompanhando as mudanças constantes no mundo da programação.">
-                I am a dedicated back-end developer with a strong interest in the financial and technological markets.
-                Passionate about artificial intelligence, I am also a keen self-learner,
-                continuously seeking to expand my knowledge and skills in this dynamic field.
-                My enthusiasm for technology drives me to explore new challenges and innovate in the ever-evolving landscape of programming.
-            </p>
-            <a href="{% static 'portfolio/Pedro_Gamarra_resume.pdf' %}" download class="download-button">
-            <p></p><i class="bi bi-file-earmark-arrow-down" data-translate="Baixar Curriculo"> Download Resume</i>
-            </a>
-        </div>
-
-        <!-- Projects Section -->
-        <div id="projects-section" class="container">
-            <h2 data-translate="Projetos">Projects</h2>
-            <div class="project-container">
-                <div class="project-card">
-                    <div class="project-image" data-video-url="{% static 'portfolio/project_RESTAPI.mp4' %}" onclick="openVideoPopup(this.getAttribute(data-video-url))">
-                        <img src="{% static 'portfolio/restapi.png' %}" alt="Project 1">
-                        <div class="overlay">
-                            <span class="overlay-text" data-translate="Mais detalhes...">Show more...</span>
+        <!-- Main Content Container -->
+        <div class="container main-container">
+            <!-- Home Section -->
+            <div id="home-section" class="my-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="profile-section">
+                            <div class="profile-image-container">
+                                <img src="{% static 'portfolio/eu.png' %}" alt="Pedro Gamarra" class="styled-img">
+                            </div>
+                            <div class="profile-info">
+                                <h1>Pedro Gamarra</h1>
+                                <p><i class="fas fa-map-pin"></i> São Paulo, BR</p>
+                                <p><i class="fas fa-calendar-alt"></i> <span data-translate="26 Anos">26 Years</span></p>
+                                <p><i class="fas fa-code"></i> [<span data-translate="Desenvolvedor Back-End">Back-End Developer</span>]</p>
+                                <br>
+                                <br>
+                                    <div class="tech-icons">
+                                        <div class="tech-icon"><i class="devicon-python-plain"></i><span>Python</span></div>
+                                        <div class="tech-icon"><i class="devicon-java-plain"></i><span>Java</span></div>
+                                        <div class="tech-icon"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
+                                        <div class="tech-icon"><i class="devicon-mysql-plain"></i><span>MySQL</span></div>
+                                        <div class="tech-icon"><i class="devicon-django-plain"></i><span>Django</span></div>
+                                        <div class="tech-icon"><i class="devicon-flask-original"></i><span>Flask</span></div>
+                                        <div class="tech-icon"><i class="devicon-docker-plain"></i><span>Docker</span></div>
+                                        <div class="tech-icon"><i class="devicon-git-plain"></i><span>Git</span></div>  
+                                        <div class="tech-icon"><i class="devicon-ubuntu-plain"></i><span>Ubuntu</span></div>
+                                    </div>
+                            </div>
                         </div>
-                    </div>                    
-                    <h3>Hotel REST API</h3>
-                    <p style="display: none;" data-translate="Esta API REST permite armazenar hotéis em sites individuais e vários sites dentro de um site principal, funcionando como uma ferramenta de busca para encontrar o melhor hotel.">
-                        This REST API enables storing hotels within individual sites and multiple sites within a main site, functioning as a search tool to find the best hotel.
-                    </p>
-                    <a style="display: none;" href="https://github.com/pehgamarra/Hotel_REST_API">GitHub <i class="bi bi-link-45deg"></i></a>
-                    <p style="display: none;">| Python | Flask | REST API | </p>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" data-video-url="{% static 'portfolio/e-commerce.mp4' %}" onclick="openVideoPopup(this.getAttribute('data-video-url'))">
-                        <img src="{% static 'portfolio/e-commerce.png' %}" alt="Project 2">
-                        <div class="overlay">
-                            <span class="overlay-text" data-translate="Mais detalhes...">Show more...</span>
-                        </div>
-                    </div>                   
-                    <h3 >E-commerce Store</h3>
-                    <p style="display: none;" data-translate="Um site de e-commerce para venda de celulares, com um catálogo diversificado e um carrinho de compras que permite aos usuários adicionar e remover produtos. A simulação de compras é integrada ao estoque, evitando compras de itens indisponíveis. Os usuários também podem deixar avaliações para os produtos. O painel administrativo possibilita o gerenciamento de pedidos, acompanhamento de vendas e geração de relatórios com gráficos.">
-                        An e-commerce site for selling mobile phones with a diverse catalog and a shopping cart that allows users to add and remove products. The shopping simulation is integrated with the inventory, preventing purchases of unavailable items. Users can also leave reviews for products. The admin panel enables order management, sales tracking, and report generation with graphs.
-                    </p>
-                    <a style="display: none;" href="https://github.com/pehgamarra/e-commerce-django-mysql">GitHub <i class="bi bi-link-45deg"></i></a>
-                    <p style="display: none;">| Python | Django | MySQL | Matplotlib | HTML | CSS | JS |</p>
-                </div>
-            </div>
-
-            <!-- Popup for Project Details -->
-            <div id="projectPopup" class="project-popup" style="display: none">
-                <div class="popup-content">
-                    <span class="close" id="popupClose">&times;</span>
-                    <video id="popupVideo" controls></video>
-                    <div id="popupInfo">
-                        <h3 id="popupTitle"></h3>
-                        <p id="popupDescription"></p>
-                        <h4 id ="popupH4"> Languages & Frameworks:</h4>
-                        <p id="popupFooter"></p>
-                        <a id="popupGitHubLink" href="#" target="_blank">GitHub <i class="bi bi-link-45deg"></i></a>
                     </div>
                 </div>
             </div>
 
+            <!-- About Me Section -->
+            <div id="about-me-section">
+                <h2 data-translate="Sobre Mim">About Me</h2>
+                <p data-translate="Sou um programador back-end dedicado...">
+                    I am a dedicated back-end developer with a strong interest in the financial and technological markets. Passionate about artificial intelligence, I am also a keen self-learner, continuously seeking to expand my knowledge and skills in this dynamic field. My enthusiasm for technology drives me to explore new challenges and innovate in the ever-evolving landscape of programming.
+                </p>
+                <a href="{% static 'portfolio/Pedro_Gamarra_resume.pdf' %}" download class="download-button">
+                    <i class="bi bi-file-earmark-arrow-down"></i> <span data-translate="Baixar Curriculo">Download Resume</span>
+                </a>
+            </div>
 
-        <!-- Certificates Section -->
-        <div id="certificates-section" class="certificates-section">
-            <div class="container text-center">
-                <h2 data-translate="Cursos certificados">Certificated Skills</h2>
-                <div id="certificatesCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="row justify-content-center">
-                                <div class="col-md-3 d-flex justify-content-center" style="width: 75%;">
-                                    <div class="certificate-card text-center" data-toggle="modal" data-target="#certificateModal" data-image="{% static 'portfolio/Certificate_Python.png' %}">
-                                        <img src="{% static 'portfolio/python.png' %}" alt="Python" class="img-fluid mb-2">
-                                        <p>Python</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 d-flex justify-content-center" style ="width: 75%">
-                                    <div class="certificate-card text-center" data-toggle="modal" data-target="#certificateModal" data-image="{% static 'portfolio/Certificate_Java.png' %}">
-                                        <img src="{% static 'portfolio/java.png' %}" alt="Java" class="img-fluid mb-2">
-                                        <p>Java</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 d-flex justify-content-center" style ="width: 75%">
-                                    <div class="certificate-card text-center" data-toggle="modal" data-target="#certificateModal" data-image="{% static 'portfolio/Certificate_MYSQL.png' %}">
-                                        <img src="{% static 'portfolio/mysql.png' %}" alt="MySQL" class="img-fluid mb-2">
-                                        <p>MySQL</p>
-                                    </div>
-                                </div>
+            <!-- Projects Section -->
+            <div id="projects-section">
+                <h2 data-translate="Projetos">Projects</h2>
+                <div class="project-container">
+                    <div class="project-card">
+                        <div class="project-image" data-video-url="{% static 'portfolio/project_RESTAPI.mp4' %}" onclick="openVideoPopup(this.getAttribute(data-video-url))">
+                            <img src="{% static 'portfolio/restapi.png' %}" alt="Project 1">
+                            <div class="overlay">
+                                <span class="overlay-text" data-translate="Mais detalhes...">Show more...</span>
                             </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="row justify-content-center">
-                                <div class="col-md-3 d-flex justify-content-center" style ="width: 75%">
-                                    <div class="certificate-card text-center" data-toggle="modal" data-target="#certificateModal" data-image="{% static 'portfolio/Certificate_Django3.jpg' %}">
-                                        <img src="{% static 'portfolio/django.png' %}" alt="Django" class="img-fluid mb-2">
-                                        <p>Django</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 d-flex justify-content-center" style ="width: 75%">
-                                    <div class="certificate-card text-center" data-toggle="modal" data-target="#certificateModal" data-image="{% static 'portfolio/Certificate_RestApi.jpg' %}">
-                                        <img src="{% static 'portfolio/rest.png' %}" alt="Flask" class="img-fluid mb-2">
-                                        <p>Flask</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 d-flex justify-content-center" style ="width: 75%">
-                                    <div class="certificate-card text-center" data-toggle="modal" data-target="#certificateModal" data-image="{% static 'portfolio/Certificate_DP.jpg' %}">
-                                        <img src="{% static 'portfolio/dp.png' %}" alt="Design Patterns" class="img-fluid mb-2">
-                                        <p>Design Patterns</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <div class="carousel-item">
-                            <div class="row justify-content-center">
-                                <div class="col-md-3 d-flex justify-content-center" style ="width: 75%">
-                                    <div class="certificate-card text-center" data-toggle="modal" data-target="#certificateModal" data-image="{% static 'portfolio/nocertificated.png' %}">
-                                        <img src="{% static 'portfolio/dl.png' %}" alt="Deep Learning" class="img-fluid mb-2">
-                                        <p>Deep Learning</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 d-flex justify-content-center" style ="width: 75%">
-                                    <div class="certificate-card text-center" data-toggle="modal" data-target="#certificateModal" data-image="{% static 'portfolio/nocertificated.png' %}">
-                                        <img src="{% static 'portfolio/nlp.png' %}" alt="NLP" class="img-fluid mb-2">
-                                        <p>NLP</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 d-flex justify-content-center" style ="width: 75%">
-                                    <div class="certificate-card text-center" data-toggle="modal" data-target="#certificateModal" data-image="{% static 'portfolio/nocertificated.png' %}">
-                                        <img src="{% static 'portfolio/ml.png' %}" alt="Machine Learning" class="img-fluid mb-2">
-                                        <p>Machine Learning</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="row justify-content-center">
-                                <div class="col-md-3 d-flex justify-content-center" style ="width: 75%">
-                                    <div class="certificate-card text-center" data-toggle="modal" data-target="#certificateModal" data-image="{% static 'portfolio/nocertificated.png' %}">
-                                        <img src="{% static 'portfolio/powerBi.png' %}" alt="Git" class="img-fluid mb-2">
-                                        <p>Power Bi</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 d-flex justify-content-center" style ="width: 75%">
-                                    <div class="certificate-card text-center" data-toggle="modal" data-target="#certificateModal" data-image="{% static 'portfolio/nocertificated.png' %}">
-                                        <img src="{% static 'portfolio/da.png' %}" alt="Data Analytics" class="img-fluid mb-2">
-                                        <p>Data Analytics</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 d-flex justify-content-center" style ="width: 75%">
-                                    <div class="certificate-card text-center" data-toggle="modal" data-target="#certificateModal" data-image="{% static 'portfolio/nocertificated.png' %}">
-                                        <img src="{% static 'portfolio/docker.png' %}" alt="Docker" class="img-fluid mb-2">
-                                        <p>Docker</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
+                        </div>                    
+                        <h3>Hotel REST API</h3>
+                        <p style="display: none;" data-translate="Esta API REST permite armazenar hotéis em sites individuais e vários sites dentro de um site principal, funcionando como uma ferramenta de busca para encontrar o melhor hotel.">
+                            This REST API enables storing hotels within individual sites and multiple sites within a main site, functioning as a search tool to find the best hotel.
+                        </p>
+                        <a style="display: none;" href="https://github.com/pehgamarra/Hotel_REST_API">GitHub <i class="bi bi-link-45deg"></i></a>
+                        <p style="display: none;">| Python | Flask | REST API | </p>
                     </div>
-                    <!-- Carousel Controls -->
-                    <a class="carousel-control-prev" href="#certificatesCarousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
+                    <div class="project-card">
+                        <div class="project-image" data-video-url="{% static 'portfolio/e-commerce.mp4' %}" onclick="openVideoPopup(this.getAttribute('data-video-url'))">
+                            <img src="{% static 'portfolio/e-commerce.png' %}" alt="Project 2">
+                            <div class="overlay">
+                                <span class="overlay-text" data-translate="Mais detalhes...">Show more...</span>
+                            </div>
+                        </div>                   
+                        <h3 >E-commerce Store</h3>
+                        <p style="display: none;" data-translate="Um site de e-commerce para venda de celulares, com um catálogo diversificado e um carrinho de compras que permite aos usuários adicionar e remover produtos. A simulação de compras é integrada ao estoque, evitando compras de itens indisponíveis. Os usuários também podem deixar avaliações para os produtos. O painel administrativo possibilita o gerenciamento de pedidos, acompanhamento de vendas e geração de relatórios com gráficos.">
+                            An e-commerce site for selling mobile phones with a diverse catalog and a shopping cart that allows users to add and remove products. The shopping simulation is integrated with the inventory, preventing purchases of unavailable items. Users can also leave reviews for products. The admin panel enables order management, sales tracking, and report generation with graphs.
+                        </p>
+                        <a style="display: none;" href="https://github.com/pehgamarra/e-commerce-django-mysql">GitHub <i class="bi bi-link-45deg"></i></a>
+                        <p style="display: none;">| Python | Django | MySQL | Matplotlib | HTML | CSS | JS |</p>
+                    </div>
+                </div>
+
+                 <!-- Popup for Project Details -->
+                 <div id="projectPopup" class="project-popup" style="display: none">
+                    <div class="popup-content">
+                        <span class="close" id="popupClose">&times;</span>
+                        <video id="popupVideo" controls></video>
+                        <div id="popupInfo">
+                            <h3 id="popupTitle"></h3>
+                            <p id="popupDescription"></p>
+                            <h4 id="popupH4">Languages & Frameworks:</h4>
+                            <p id="popupFooter"></p>
+                            <a id="popupGitHubLink" href="#" target="_blank">GitHub <i class="bi bi-link-45deg"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificates Section -->
+            <div id="certificates-section" class="certificates-section">
+                <div class="container text-center">
+                    <h2 data-translate="Cursos certificados">Certificated Skills</h2>
+                    <br>
+                    <div class="row">
+                        <div class="col-4 col-md-2 mb-3">
+                            <div class="certificate-card" data-toggle="modal" data-target="#certificateModal" 
+                                 data-images="{% static 'portfolio/Certificate_Python.png' %}|{% static 'portfolio/Certificate_DataScience.png' %}" 
+                                 data-skills="Skill 1, Skill 2, Skill 3">
+                                <div class="certificated-icon">
+                                    <i class="devicon-python-plain"></i>
+                                    <span>Python</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-2 mb-3">
+                            <div class="certificate-card" data-toggle="modal" data-target="#certificateModal" 
+                                 data-images="{% static 'portfolio/Certificate_Java.png' %}" 
+                                 data-skills="Core Java fundamentals, Object-oriented programming principles, Multithreading and concurrency, Java Collections Framework, Exception handling and debugging, Java 8+ features (Lambdas/Streams)">
+                                <div class="certificated-icon">
+                                    <i class="devicon-java-plain"></i>
+                                    <span>Java</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-2 mb-3">
+                            <div class="certificate-card" data-toggle="modal" data-target="#certificateModal" 
+                                 data-images="{% static 'portfolio/Certificate_MYSQL.png' %}" 
+                                 data-skills="Database design and normalization, Complex SQL queries and subqueries, Indexing and query optimization, Stored procedures and functions,Triggers and events,Transaction management">
+                                <div class="certificated-icon">
+                                    <i class="devicon-mysql-plain"></i>
+                                    <span>MySQL</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-2 mb-3">
+                            <div class="certificate-card" data-toggle="modal" data-target="#certificateModal" 
+                                 data-images="{% static 'portfolio/Certificate_Django3.jpg' %}" 
+                                 data-skills="Django MTV architecture, ORM and database migrations, Authentication and authorization, Django REST framework, Class-based views, Template engine and forms">
+                                <div class="certificated-icon">
+                                    <i class="devicon-django-plain"></i>
+                                    <span>Django</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-2 mb-3">
+                            <div class="certificate-card" data-toggle="modal" data-target="#certificateModal" 
+                                 data-images="{% static 'portfolio/Certificate_RestApi.jpg' %}" 
+                                 data-skills="RESTful API design principles, Flask and Flask-RESTful, API authentication and security, Database integration with SQLAlchemy, API testing and documentation, Deployment of Flask applications">
+                                <div class="certificated-icon">
+                                    <i class="devicon-flask-original"></i>
+                                    <span>Flask</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-2 mb-3">
+                            <div class="certificate-card" data-toggle="modal" data-target="#certificateModal" 
+                                 data-images="{% static 'portfolio/Certificate_DP.jpg' %}" 
+                                 data-skills="Creational patterns (Singleton/Factory/Builder), Structural patterns (Adapter/Decorator/Facade), Behavioral patterns (Observer/Strategy/Command), SOLID principles, Design pattern implementation in Python & Java, Anti-patterns and when to avoid certain patterns">
+                                <div class="certificated-icon">
+                                    <i class="fas fa-cogs"></i>
+                                    <span>Design Patterns</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-2 mb-3">
+                            <div class="certificate-card" data-toggle="modal" data-target="#certificateModal" 
+                                 data-images="{% static 'portfolio/Certificate_DataScience.png' %}" 
+                                 data-skills="Linear Regression, Correlation, Calculations, Exploratory Data Analysis">
+                                <div class="certificated-icon">
+                                    <i class="fas fa-chart-bar"></i>
+                                    <span>Data Science</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-2 mb-3">
+                            <div class="certificate-card" data-toggle="modal" data-target="#certificateModal" 
+                                 data-images="{% static 'portfolio/Certificate_Docker.png' %}"
+                                 data-skills="Docker fundamentals, Container creation and management, Docker image building, Docker Compose, Python application containerization, DevOps practices with Docker, Microservices architecture, Docker networking, Data persistence with volumes, Docker image optimization, Basic container orchestration, CI/CD concepts with Docker">
+                                <div class="certificated-icon">
+                                    <i class="devicon-docker-plain"></i>
+                                    <span>Docker</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificate Modal -->
+            <div class="modal fade" id="certificateModal" tabindex="-1" role="dialog" aria-labelledby="certificateModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="certificateModalLabel">Certificate</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <img id="modalImage" src="" alt="Certificate" class="img-fluid">
+                                    <div class="certificate-navigation">
+                                        <button id="prevCertificate" class="btn btn-navigation">&lt; Previous</button>
+                                        <button id="nextCertificate" class="btn btn-navigation">Next &gt;</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <h4>Skills Acquired:</h4>
+                                    <ul id="certificateSkills"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soft Skills Section -->
+            <div id="soft-skills-section" class="my-5">
+                <h2 class="text-center" data-translate="Habilidades">Soft Skills</h2>
+                <div class="skills-container">
+                    <!-- Programming Languages -->
+                    <div class="skill-box">
+                        <h3 data-translate="Linguagens de Programação">Programming Languages</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item" data-translate="Python">
+                                <span class="skill-name">Python</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle" data-level="3"></span>
+                                    <span class="skill-circle" data-level="4"></span>
+                                    <span class="skill-circle"></span>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <span class="skill-name" data-translate="Java">Java</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle"></span>
+                                    <span class="skill-circle"></span>
+                                    <span class="skill-circle"></span>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <span class="skill-name" data-translate="MySQL">MySQL</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle" data-level="3"></span>
+                                    <span class="skill-circle"></span>
+                                    <span class="skill-circle"></span>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <span class="skill-name" data-translate="Html/ CSS/ JS">Html/ CSS/ JS</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle"></span>
+                                    <span class="skill-circle"></span>
+                                    <span class="skill-circle"></span>
+                                </div>
+                            </li>
+                            <li>
+                                
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Frameworks and Libraries -->
+                    <div class="skill-box">
+                        <h3 data-translate="Frameworks e Bibliotecas">Frameworks & Libraries</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">
+                                <span class="skill-name" data-translate="Docker">Power Bi</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle" data-level="3"></span>
+                                    <span class="skill-circle" data-level="4"></span>
+                                    <span class="skill-circle"></span>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <span class="skill-name" data-translate="Django">Django</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle" data-level="3"></span>
+                                    <span class="skill-circle" data-level="4"></span>
+                                    <span class="skill-circle"></span>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <span class="skill-name" data-translate="Flask">Flask</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle" data-level="3"></span>
+                                    <span class="skill-circle"></span>
+                                    <span class="skill-circle"></span>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <span class="skill-name" data-translate="Git">Git</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle" data-level="3"></span>
+                                    <span class="skill-circle" data-level="4"></span>
+                                    <span class="skill-circle"></span>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <span class="skill-name" data-translate="AWS">AWS</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle"></span>
+                                    <span class="skill-circle"></span>
+                                    <span class="skill-circle"></span>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <span class="skill-name" data-translate="Docker">Docker</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle"></span>
+                                    <span class="skill-circle"></span>
+                                    <span class="skill-circle"></span>
+                                </div>
+                            </li>
+                            <li>
+                                
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Development Principles -->
+                    <div class="skill-box">
+                        <h3 data-translate="Princípios de Desenvolvimento">Development Principles</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item" data-translate="Programação Orientada a Objetos">
+                                <span class="skill-name" data-translate="Object-Oriented Programming">Object-Oriented Programming</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle" data-level="3"></span>
+                                    <span class="skill-circle" data-level="4"></span>
+                                    <span class="skill-circle"></span>
+                                </div>
+                            </li>
+                            <li class="skill-item" data-translate="Padrões de Design">
+                                <span class="skill-name" data-translate="Design Patterns">Design Patterns</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle" data-level="3"></span>
+                                    <span class="skill-circle" data-level="4"></span>
+                                    <span class="skill-circle"></span>
+                                </div>
+                            </li>
+                            <li class="skill-item" data-translate="Notação Big O">
+                                <span class="skill-name" data-translate="Big O' Notation">Big O' Notation</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle"></span>
+                                    <span class="skill-circle"></span>
+                                    <span class="skill-circle"></span>
+                                </div>
+                            </li>
+                            <li class="skill-item" data-translate="Arquitetura Limpa">
+                                <span class="skill-name" data-translate="Clean Architecture">Clean Architecture</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle" data-level="3"></span>
+                                    <span class="skill-circle"></span>
+                                    <span class="skill-circle"></span>
+                                </div>
+                            </li>
+                            <li class="skill-item" data-translate="Metodologia Ágil">
+                                <span class="skill-name" data-translate="Agile Methodology">Agile Methodology</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle" data-level="3"></span>
+                                    <span class="skill-circle" data-level="4"></span>
+                                    <span class="skill-circle"></span>
+                                </div>
+                            </li>
+                            <li class="skill-item" data-translate="Estatísticas para Ciência de Dados">
+                                <span class="skill-name" data-translate="Statistics for Data Science">Statistics for Data Science</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle" data-level="3"></span>
+                                    <span class="skill-circle"></span>
+                                    <span class="skill-circle"></span>
+                                </div>
+                            </li>
+                            <li>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Interpersonal Skills -->
+                    <div class="skill-box">
+                        <h3 data-translate="Habilidades Interpessoais">Interpersonal<br> Skills</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item" data-translate="Comunicação">
+                                <span class="skill-name" data-translate="Communication">Communication</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle" data-level="3"></span>
+                                    <span class="skill-circle" data-level="4"></span>
+                                    <span class="skill-circle" data-level="5"></span>
+                                </div>
+                            </li>
+                            <li class="skill-item" data-translate="Adaptabilidade">
+                                <span class="skill-name" data-translate="Adaptability">Adaptability</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle" data-level="3"></span>
+                                    <span class="skill-circle" data-level="4"></span>
+                                    <span class="skill-circle"></span>
+                                </div>
+                            </li>
+                            <li class="skill-item" data-translate="Solução de Problemas">
+                                <span class="skill-name" data-translate="Creative Problem Solving">Creative Problem Solving</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle" data-level="3"></span>
+                                    <span class="skill-circle" data-level="4"></span>
+                                    <span class="skill-circle" data-level="5"></span>
+                                </div>
+                            </li>
+                            <li class="skill-item" data-translate="Aprendizado Rápido">
+                                <span class="skill-name" data-translate="Quick Self-Learner">Quick Self-Learner</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle" data-level="3"></span>
+                                    <span class="skill-circle" data-level="4"></span>
+                                    <span class="skill-circle" data-level="5"></span>
+                                </div>
+                            </li>
+                            <li class="skill-item" data-translate="Atenção aos Detalhes">
+                                <span class="skill-name" data-translate="Attention to detail">Attention to detail</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle" data-level="3"></span>
+                                    <span class="skill-circle" data-level="4"></span>
+                                    <span class="skill-circle"></span>
+                                </div>
+                            </li>
+                            <li class="skill-item" data-translate="Produtividade Aprimorada por IA">
+                                <span class="skill-name" data-translate="AI-Enhanced Productivity">AI-Enhanced Productivity</span>
+                                <div class="skill-rating">
+                                    <span class="skill-circle" data-level="1"></span>
+                                    <span class="skill-circle" data-level="2"></span>
+                                    <span class="skill-circle" data-level="3"></span>
+                                    <span class="skill-circle" data-level="4"></span>
+                                    <span class="skill-circle" data-level="5"></span>
+                                </div>
+                            </li>
+                            <li>
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="contact-section">
+                <h2 class="text-center">Contact Me</h2>
+                <div class="contact-icons">
+                    <a href="https://github.com/pehgamarra" class="icon-link" title="GitHub">
+                        <div class="icon-container">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <span data-translate="Check my Github">Check my Github</span>
+                        <span>@pehgamarra</span>
                     </a>
-                    <a class="carousel-control-next" href="#certificatesCarousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
+                    <a href="mailto:pedrohhouro@gmail.com" class="icon-link" title="Email">
+                        <div class="icon-container">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <span data-translate="Send me a E-mail">Send me a E-mail</span>
+                        <span>pedrohhouro@gmail.com</span>
+                    </a>
+                    <a href="tel:+5511992256425" class="icon-link" title="Phone">
+                        <div class="icon-container">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <span data-translate="Text me on Whatsapp">Text me on Whatsapp</span>
+                        <span>+55 (11) 99225-6425</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/pehgamarra" class="icon-link" title="LinkedIn">
+                        <div class="icon-container">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <span data-translate="Call me on LinkedIn">Call me on LinkedIn</span>
+                        <span>@pehgamarra</span>
                     </a>
                 </div>
-            </div>
-        </div>
-
-        <!-- Soft Skills Section -->
-        <div id="soft-skills-section" class="container my-5">
-            <h2 class="text-center" data-translate="Habilidades">Soft Skills</h2>
-            <div class="skills-container">
-                <!-- Programming Languages -->
-                <div class="skill-box">
-                    <h3 data-translate="Linguagens de Programação">Programming Languages</h3>
-                    <ul class="skill-list">
-                        <li>Python</li>
-                        <li>Java</li>
-                        <li>MySQL</li>
-                        <li>Html/ CSS/ JS</li>
-                    </ul>
-                </div>
-                <!-- Frameworks and Libraries -->
-                <div class="skill-box">
-                    <h3 data-translate="Frameworks e Bibliotecas">Frameworks & Libraries</h3>
-                    <ul class="skill-list">
-                        <li>Django</li>
-                        <li>Flask</li>
-                        <li>Git</li>
-                        <li>AWS</li>
-                        <li>Docker</li>
-                        <li>Pandas</li>
-                        <li>Numpy</li>
-                        <li>YOLO</li>
-                        <li>Matplotlib & Seaborn</li>
-                    </ul>
-                </div>
-                <!-- Tools and Technologies -->
-                <div class="skill-box">
-                    <h3 data-translate="Princípios de Desenvolvimento">Development Principles</h3>
-                    <ul class="skill-list">
-                        <li data-translate="Programação Orientada a Objetos">Object-Oriented Programming</li>
-                        <li data-translate="Padrões de Design">Design Patterns</li>
-                        <li data-translate="Notação Big O">Big O' Notation</li>
-                        <li data-translate="Arquitetura Limpa">Clean Architecture</li>
-                        <li data-translate="Metodologia Ágil">Agile Methodology</li>
-                        <li data-translate="Estatísticas para Ciência de Dados">Statistics for Data Science</li>
-
-                    </ul>
-                </div>
-                <!-- Interpersonal Skills -->
-                <div class="skill-box"><h3 data-translate="Habilidades Interpessoais">Interpersonal <br> Skills</h3>
-                    <ul class="skill-list">
-                        <li data-translate="Comunicação">Communication</li>
-                        <li data-translate="Adaptabilidade">Adaptability</li>
-                        <li data-translate="Solução de Problemas">Creative Problem Solving</li>
-                        <li data-translate="Aprendizado Rápido">Quick Self-Learner</li>
-                        <li data-translate="Atenção aos Detalhes">Atention to detail</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Contact Section -->
-        <div id="contact-section" >
-            <h2 style="color:#cfa266;" data-translate="Vamos entrar em Contato">Contact Me</h2>
-            <div class="contact-grid">
-                <!-- GitHub -->
-                <a href="https://github.com/pehgamarra" class="contact-item">
-                    <div class="contact-icon">
-                        <img src="{% static 'portfolio/github.png' %}" alt="GitHub Icon">
-                    </div>
-                    <div class="contact-info">
-                        <h3>GitHub</h3>
-                        <p>@pehgamarra</p>
-                    </div>
-                </a>
-                <!-- Email -->
-                <a href="mailto:pedrohhouro@gmail.com" class="contact-item">
-                    <div class="contact-icon">
-                        <img src="{% static 'portfolio/email.png' %}" alt="Email Icon">
-                    </div>
-                    <div class="contact-info">
-                        <h3>Gmail</h3>
-                        <p>pedrohhouro@gmail.com</p>
-                    </div>
-                </a>
-                <!-- Phone -->
-                <a href="https://wa.me/5511992256425" target="_blank" class="contact-item">
-                    <div class="contact-icon">
-                        <img src="{% static 'portfolio/phone.png' %}" alt="Phone Icon">
-                    </div>
-                    <div class="contact-info">
-                        <h3 data-translate="Whatsapp">Phone</h3>
-                        <p>+55 (11) 99225 6425</p>
-                    </div>
-                </a>
-                <!-- LinkedIn -->
-                <a href="https://www.linkedin.com/in/pedro-gamarra-9b8162181/" class="contact-item">
-                    <div class="contact-icon">
-                        <img src="{% static 'portfolio/linkedin.png' %}" alt="LinkedIn Icon">
-                    </div>
-                    <div class="contact-info">
-                        <h3>LinkedIn</h3>
-                        <p>@pehgamarra</p>
-                    </div>
-                </a>
             </div>
         </div>
 
@@ -409,9 +590,25 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-        <!-- Switch language-->
+        <!-- JS/CSS-->
+        <script src="{% static 'js/modal.js' %}"></script>
         <script src="{% static 'js/languageSwitcher.js' %}"></script>
         <script src="{% static 'js/popup.js' %}"></script>
+        <script src="{% static 'js/certificate-popup.js' %}"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqcloud/1.0.4/jqcloud-1.0.4.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqcloud/1.0.4/jqcloud.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+        <!-- SVG -->
+        <svg width="0" height="0" style="position: absolute;">
+            <defs>
+                <linearGradient id="icon-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ff8a00" />
+                    <stop offset="100%" stop-color="#007bff" />
+                </linearGradient>
+            </defs>
+        </svg>
 
     </body>
 </html>
