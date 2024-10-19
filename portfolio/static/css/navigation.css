@@ -1,0 +1,77 @@
+.navbar {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    margin-bottom: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 15px;
+}
+
+.navbar-nav .nav-link {
+    color: orange !important;
+    font-family: monospace, sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: rgb(247, 247, 247) !important;
+    text-shadow:
+        1px 1px 0 deepskyblue,
+        -1px -1px 0 deepskyblue,
+        1px -1px 0 deepskyblue,
+        -1px 1px 0 deepskyblue;
+}
+
+.language-switcher {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.language-text {
+    color: orange;
+    font-family: monospace, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 10px;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.language-text:hover {
+    color: rgb(247, 247, 247);
+    text-shadow:
+        1px 1px 0 deepskyblue,
+        -1px -1px 0 deepskyblue,
+        1px -1px 0 deepskyblue,
+        -1px 1px 0 deepskyblue;
+}
+
+.language-button {
+    background-color: #f0f0f000;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s, border-color 0.3s;
+    margin-left: 10px;
+}
+
+.language-button img {
+    width: 20px;
+    height: 15px;
+}
+
+.language-button:hover {
+    background-color: rgba(255, 166, 0, 0.555);
+    border-color: deepskyblue;
+}
+

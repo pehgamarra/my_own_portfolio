@@ -1,0 +1,85 @@
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid #cfa266;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(207, 162, 102, 0.5);
+}
+
+.modal-header {
+    border-bottom: 1px solid #cfa266;
+    padding: 15px;
+}
+
+.modal-title {
+    color: #cfa266;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+#modalImage {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #cfa266;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(207, 162, 102, 0.3);
+}
+
+#certificateSkills {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+#certificateSkills li {
+    color: #ffffff;
+    background-color: rgba(207, 162, 102, 0.2);
+    border: 1px solid #cfa266;
+    border-radius: 20px;
+    padding: 5px 15px;
+    margin: 5px 0;
+    display: inline-block;
+    font-size: 0.9rem;
+}
+
+.close {
+    color: #cfa266;
+    opacity: 1;
+}
+
+.close:hover {
+    color: #ff8a00;
+}
+
+.modal-backdrop {
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+.modal-backdrop.show {
+    opacity: 0.5;
+}
+
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out;
+    transform: translate(0, -50px);
+}
+
+.modal.show .modal-dialog {
+    transform: none;
+}
+
+.modal-backdrop {
+    z-index: 1040 !important;
+}
+
+.modal {
+    z-index: 1050 !important;
+}
+
+.modal-content {
+    z-index: 1060 !important;
+}

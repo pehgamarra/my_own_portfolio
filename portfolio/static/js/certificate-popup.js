@@ -1,60 +1,43 @@
 console.log("Certificate popup script loaded");
 
-$(document).ready(function() {
-    let currentImageIndex = 0;
-    let images = [];
+document.addEventListener('DOMContentLoaded', function() {
+    const certificateCards = document.querySelectorAll('.certificate-card');
+    const modal = document.getElementById('certificateModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.querySelector('.modal-title');
+    const certificateSkills = document.getElementById('certificateSkills');
+    const closeButton = modal.querySelector('.close');
 
-    $('.certificate-card').on('click', function() {
-        images = $(this).data('images').split('|');
-        var skills = $(this).data('skills');
-        
-        currentImageIndex = 0;
-        updateModalImage();
-        
-        var skillsList = $('#certificateSkills');
-        skillsList.empty();
-        
-        if (typeof skills === 'string') {
-            skills = skills.split(',').map(function(item) {
-                return item.trim();
-            });
-        }
-        
-        if (Array.isArray(skills)) {
-            skills.forEach(function(skill) {
-                skillsList.append('<li>' + skill + '</li>');
-            });
-        }
-        
-        $('#certificateModal').modal('show');
+    certificateCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const images = this.dataset.images.split('|');
+            const skills = this.dataset.skills.split(',');
+            const title = this.querySelector('.certificated-icon span').textContent;
+
+            modalImage.src = images[0];
+            modalTitle.textContent = title;
+            certificateSkills.innerHTML = skills.map(skill => `<li>${skill.trim()}</li>`).join('');
+
+            $(modal).modal('show');
+        });
     });
 
-    function updateModalImage() {
-        $('#modalImage').attr('src', images[currentImageIndex]);
-        updateNavigationButtons();
+    closeButton.addEventListener('click', closeModal);
+    modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    function closeModal() {
+        $(modal).modal('hide');
+        setTimeout(() => {
+            document.body.classList.remove('modal-open');
+            document.body.style.paddingRight = '';
+            const backdrop = document.querySelector('.modal-backdrop');
+            if (backdrop) {
+                backdrop.remove();
+            }
+        }, 300); // Aguarda a transição do modal terminar
     }
-
-    function updateNavigationButtons() {
-        $('#prevCertificate').prop('disabled', currentImageIndex === 0);
-        $('#nextCertificate').prop('disabled', currentImageIndex === images.length - 1);
-    }
-
-    $('#prevCertificate').on('click', function() {
-        if (currentImageIndex > 0) {
-            currentImageIndex--;
-            updateModalImage();
-        }
-    });
-
-    $('#nextCertificate').on('click', function() {
-        if (currentImageIndex < images.length - 1) {
-            currentImageIndex++;
-            updateModalImage();
-        }
-    });
-
-    $('#certificateModal').on('hidden.bs.modal', function () {
-        $('body').removeClass('modal-open');
-        $('.modal-backdrop').remove();
-    });
 });

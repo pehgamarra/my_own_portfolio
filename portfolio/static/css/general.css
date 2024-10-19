@@ -1,0 +1,38 @@
+html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-image: 
+        linear-gradient(to bottom right, rgba(0, 41, 88, 0.2), rgba(207, 162, 102, 0.2)),
+        url("/static/portfolio/background.png");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: rgb(255, 255, 255);
+    min-height: 100vh;
+    padding-top: 70px;
+}
+
+.container {
+    background-color: transparent !important;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-content {
+    padding-top: 50px;
+    position: relative;
+}
+
+.main-container {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
