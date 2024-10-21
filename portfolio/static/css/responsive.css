@@ -72,9 +72,20 @@
         flex-direction: column;
     }
 
+    
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .copyright {
+        margin-bottom: 20px;
+    }
+
     .contact-icons {
         flex-direction: column;
         align-items: center;
+        gap: 20px;
     }
     .close {
         top: 5px;
@@ -97,10 +108,6 @@
         min-height: auto;
     }
 
-    .contact-icons {
-        gap: 20px;
-    }
-    
     .icon-container {
         width: 60px;
         height: 60px;
@@ -118,6 +125,12 @@
         -ms-flex: 0 0 16.666667%;
         flex: 0 0 16.666667%;
         max-width: 32%;
+    }
+
+    .contact-icons {
+        gap: 20px;
+        flex-direction: column;
+        align-items: center;
     }
 }
 

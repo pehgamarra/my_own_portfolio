@@ -15,59 +15,81 @@
 
 .contact-icons {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
     gap: 40px;
 }
 
 .icon-link {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    text-decoration: none;
-    color: #ffffff;
-    transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.icon-link:hover {
-    transform: translateY(-10px);
     color: #cfa266;
-    text-decoration: none;
+    text-decoration: none !important;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-.icon-container {
-    background-color: #cfa266;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 15px;
-    transition: background-color 0.3s ease;
-}
-
-.icon-link:hover .icon-container {
-    background-color: #ff8a00;
+.icon-link:hover,
+.icon-link:focus,
+.icon-link:active {
+    color: #ff8a00;
+    text-shadow: 0 0 10px rgba(207, 162, 102, 0.7);
+    text-decoration: none !important;
 }
 
 .icon-link i {
-    font-size: 2.5rem;
-    color: #000000;
-    transition: color 0.3s ease;
+    font-size: 1.5rem;
+    margin-right: 10px;
+    transition: transform 0.8s ease;
 }
 
 .icon-link:hover i {
-    color: #5fc3eb;
+    transform: rotate(360deg);
 }
 
 .icon-link span {
-    font-size: 1rem;
-    text-align: center;
-    margin-top: 10px;
-    transition: color 0.3s ease;
+    font-size: 0.9rem;
 }
 
-.icon-link:hover span {
+.custom-footer {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 15px 0;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    position: relative;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.copyright {
     color: #cfa266;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 1024px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .copyright {
+        margin-bottom: 20px;
+    }
+    
+    .contact-icons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 767px) {
+    .contact-icons {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
 }

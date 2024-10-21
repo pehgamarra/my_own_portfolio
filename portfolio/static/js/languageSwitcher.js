@@ -1,10 +1,6 @@
-// languageSwitcher.js
-
 document.addEventListener('DOMContentLoaded', function () {
     const englishButton = document.getElementById('english-button');
     const portugueseButton = document.getElementById('portuguese-button');
-    const englishButton1 = document.getElementById('english-button1');
-    const portugueseButton1 = document.getElementById('portuguese-button1');
     
     const translations = {
         pt: {
@@ -25,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
             "Programming Languages": "Linguagens de Programação",
             "Frameworks & Libraries": "Frameworks e Bibliotecas",
             "Development Principles": "Princípios de Desenvolvimento",
-            "Interpersonal Skills": "Habilidades Interpessoais",
             "Communication": "Comunicação",
             "Adaptability": "Adaptabilidade",
             "Creative Problem Solving": "Solução de Problemas",
@@ -50,8 +45,39 @@ document.addEventListener('DOMContentLoaded', function () {
             "Text me on Whatsapp": "Mande-me uma mensagem no Whatsapp",
             "Call me on LinkedIn": "Chame-me no LinkedIn",
             "AI-Enhanced Productivity": "Produtividade Aprimorada por IA",
-            "Translate":"Traduzir"
+            "Translate":"Traduzir",
+            "Html/ CSS/ JS": "Html/ CSS/ JS",
+            "Power Bi": "Power Bi",
+            "Django": "Django",
+            "Flask": "Flask",
+            "Git": "Git",
+            "AWS": "AWS",
+            "Docker": "Docker",
+            "Object-Oriented Programming": "Programação Orientada a Objetos",
+            "Design Patterns": "Padrões de Design",
+            "Big O' Notation": "Notação Big O",
+            "Clean Architecture": "Arquitetura Limpa",
+            "Agile Methodology": "Metodologia Ágil",
+            "Statistics for Data Science": "Estatísticas para Ciência de Dados",
+            "Communication": "Comunicação",
+            "Adaptability": "Adaptabilidade",
+            "Creative Problem Solving": "Solução de Problemas",
+            "Quick Self-Learner": "Aprendizado Rápido",
+            "Attention to detail": "Atenção aos Detalhes",
+            "AI-Enhanced Productivity": "Produtividade Aprimorada por IA",
+            "Skills Acquired": "Habilidades adquiridas",
+            "Data Science": "Ciência de Dados",
+            "Design Patterns": "Padrões de Design",
+            "Skills Acquired:": "Habilidades Adquiridas:",
+            "Skill":"Habilidade",
+            "View more": "Mais projetos",
+            'Filter by Language & Framework': 'Filtrar por Linguagem & Framework',
+            'All': 'Todos',
+            'No projects found for the selected skill.': 'Nenhum projeto encontrado para a habilidade selecionada.',
+            'Languages & Frameworks': 'Linguagens & Frameworks',
+            'Show more': 'Mais detalhes'
         },
+        
         en: {
             "Início": "Home",
             "Sobre": "About",
@@ -70,7 +96,6 @@ document.addEventListener('DOMContentLoaded', function () {
             "Linguagens de Programação": "Programming Languages",
             "Frameworks e Bibliotecas": "Frameworks & Libraries",
             "Princípios de Desenvolvimento": "Development Principles",
-            "Habilidades Interpessoais": "Interpersonal Skills",
             "Comunicação": "Communication",
             "Adaptabilidade": "Adaptability",
             "Solução de Problemas": "Creative Problem Solving",
@@ -94,9 +119,39 @@ document.addEventListener('DOMContentLoaded', function () {
             "Mande-me uma mensagem no Whatsapp": "Text me on Whatsapp",
             "Chame-me no LinkedIn": "Call me on LinkedIn",
             "Produtividade Aprimorada por IA": "AI-Enhanced Productivity",
-            "Traduzir":"Translate"
-        },
-    };
+            "Habilidades adquiridas": "Skills Acquired",
+            "Traduzir":"Translate",
+            "Html/ CSS/ JS": "Html/ CSS/ JS",
+            "Power Bi": "Power Bi",
+            "Django": "Django",
+            "Flask": "Flask",
+            "Git": "Git",
+            "AWS": "AWS",
+            "Docker": "Docker",
+            "Programação Orientada a Objetos": "Object-Oriented Programming",
+            "Padrões de Design": "Design Patterns",
+            "Notação Big O": "Big O' Notation",
+            "Arquitetura Limpa": "Clean Architecture",
+            "Metodologia Ágil": "Agile Methodology",
+            "Estatísticas para Ciência de Dados": "Statistics for Data Science",
+            "Comunicação": "Communication",
+            "Adaptabilidade": "Adaptability",
+            "Solução de Problemas Criativos": "Creative Problem Solving",
+            "Aprendizado Rápido Autodidata": "Quick Self-Learner",
+            "Atenção aos Detalhes": "Attention to detail",
+            "Produtividade Aprimorada por IA": "AI-Enhanced Productivity",
+            "Ciencia de Dados": "Data Science",
+            "Padrões de Design": "Design Patterns",
+            "Habilidades Adquiridas:": "Skills Acquired:",
+            "Habilidade":"Skill",
+            "Mais projetos": "View more",
+            'Filtrar por Linguagem & Framework': 'Filter by Language & Framework',
+            'Todos': 'All',
+            'Nenhum projeto encontrado para a habilidade selecionada': 'No projects found for the selected skill.',
+            'Linguagens & Frameworks': 'Languages & Frameworks',
+            "Mais detalhes": "Show more"
+        }
+};
     
 
     let currentLanguage = 'en';
@@ -106,17 +161,30 @@ document.addEventListener('DOMContentLoaded', function () {
             const key = element.innerText.trim();
             if (translations[currentLanguage][key]) {
                 if (element.classList.contains('skill-item')) {
-                    // Para elementos 'skill-item', atualizamos apenas o texto dentro de 'skill-name'
                     const skillName = element.querySelector('.skill-name');
                     if (skillName) {
                         skillName.textContent = translations[currentLanguage][key];
                     }
                 } else {
-                    // Para todos os outros elementos, atualizamos o conteúdo
                     element.innerHTML = translations[currentLanguage][key];
                 }
             }
         });
+
+        if (window.location.pathname.includes('/projects')) {
+            document.querySelectorAll('.project-card').forEach(card => {
+                const title = card.querySelector('.project-title');
+                const description = card.querySelector('.project-description');
+
+                if (currentLanguage === 'pt') {
+                    title.textContent = title.getAttribute('data-title-pt') || title.textContent;
+                    description.textContent = description.getAttribute('data-description-pt') || description.textContent;
+                } else {
+                    title.textContent = title.getAttribute('data-title-en') || title.textContent;
+                    description.textContent = description.getAttribute('data-description-en') || description.textContent;
+                }
+            });
+        }
     }
 
     englishButton.addEventListener('click', function () {
@@ -128,15 +196,11 @@ document.addEventListener('DOMContentLoaded', function () {
         currentLanguage = 'pt';
         updateTranslations();
     });
-    englishButton1.addEventListener('click', function () {
-        currentLanguage = 'en';
-        updateTranslations();
-    });
 
-    portugueseButton1.addEventListener('click', function () {
-        currentLanguage = 'pt';
+    window.getCurrentLanguage = () => currentLanguage;
+    window.switchLanguage = function(lang) {
+        currentLanguage = lang;
         updateTranslations();
-    });
-
-    updateTranslations();
+    };
 });
+
