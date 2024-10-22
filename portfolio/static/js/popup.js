@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded');
+
     const projectImages = document.querySelectorAll('.project-image');
+    console.log('Project images found:', projectImages.length);
+
     const projectPopup = document.getElementById('projectPopup');
     const popupVideo = document.getElementById('popupVideo');
     const popupClose = document.getElementById('popupClose');
@@ -8,7 +12,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const popupGitHubLink = document.getElementById('popupGitHubLink');
     const popupSkills = document.getElementById('popupSkills');
 
-    // Verificar se todos os elementos necessários existem
+    console.log('Popup elements:', {
+        projectPopup: !!projectPopup,
+        popupVideo: !!popupVideo,
+        popupClose: !!popupClose,
+        popupTitle: !!popupTitle,
+        popupDescription: !!popupDescription,
+        popupGitHubLink: !!popupGitHubLink,
+        popupSkills: !!popupSkills
+    });
+
     if (!projectPopup || !popupVideo || !popupClose || !popupTitle || !popupDescription || !popupGitHubLink || !popupSkills) {
         console.error('Um ou mais elementos necessários não foram encontrados no DOM');
         return;
@@ -23,25 +36,15 @@ document.addEventListener('DOMContentLoaded', function() {
     function openVideoPopup(videoUrl) {
         const videoId = extractYouTubeId(videoUrl);
         if (videoId) {
-            // Remova o iframe existente
-            while (popupVideo.firstChild) {
-                popupVideo.removeChild(popupVideo.firstChild);
-            }
-
-            // Crie um novo div para o player
-            const playerDiv = document.createElement('div');
-            playerDiv.id = 'youtube-player';
-            popupVideo.appendChild(playerDiv);
-
-            // Inicialize o player do YouTube
-            new YT.Player('youtube-player', {
-                height: '360',
-                width: '640',
-                videoId: videoId,
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
+            const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/0.jpg`;
+            const videoLink = `https://www.youtube.com/watch?v=${videoId}`;
+            
+            popupVideo.innerHTML = `
+                <a href="${videoLink}" target="_blank">
+                    <img src="${thumbnailUrl}" alt="Video Thumbnail" style="width: 100%; cursor: pointer;">
+                    <div style="text-align: center; margin-top: 10px;">Clique para assistir no YouTube</div>
+                </a>
+            `;
 
             projectPopup.style.display = 'block';
             document.body.style.overflow = 'hidden';
@@ -87,10 +90,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    projectImages.forEach((image) => {
+    projectImages.forEach((image, index) => {
         image.addEventListener('click', () => {
-            const videoUrl = image.getAttribute('data-video-url');
-            console.log('Video URL:', videoUrl); // Log para debug
+            console.log('Image clicked:', index);
             
             const projectCard = image.closest('.project-card');
             if (!projectCard) {
@@ -103,9 +105,25 @@ document.addEventListener('DOMContentLoaded', function() {
             const skillsElement = projectCard.querySelector('p:last-child');
             const githubLinkElement = projectCard.querySelector('a[href^="https://github.com"]');
 
-            if (titleElement) popupTitle.innerText = titleElement.innerText;
-            if (descriptionElement) popupDescription.innerText = descriptionElement.innerText;
-            
+            console.log('Elements found:', {
+                titleElement: !!titleElement,
+                descriptionElement: !!descriptionElement,
+                skillsElement: !!skillsElement,
+                githubLinkElement: !!githubLinkElement
+            });
+
+            if (titleElement && popupTitle) {
+                popupTitle.textContent = titleElement.textContent;
+            } else {
+                console.error('Title element or popupTitle not found');
+            }
+
+            if (descriptionElement && popupDescription) {
+                popupDescription.textContent = descriptionElement.textContent;
+            } else {
+                console.error('Description element or popupDescription not found');
+            }
+
             // Clear previous skills
             popupSkills.innerHTML = '';
             
@@ -127,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 popupGitHubLink.style.display = 'none';
             }
 
-            openVideoPopup(videoUrl);
+            openVideoPopup(image.getAttribute('data-video-url'));
         });
     });
 
