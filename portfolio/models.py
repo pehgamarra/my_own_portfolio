@@ -18,6 +18,7 @@ class Project(models.Model):
     video = CloudinaryField('video', resource_type='video', blank=True, null=True)
     thumbnail = CloudinaryField('image', blank=True, null=True)
     github_link = models.URLField(blank=True, null=True)
+    featured = models.BooleanField(default=False, verbose_name="Destaque")
 
     def __str__(self):
         return self.title
