@@ -6,7 +6,7 @@
 
 .skills-container {
     display: flex;
-    justify-content: first baseline;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 

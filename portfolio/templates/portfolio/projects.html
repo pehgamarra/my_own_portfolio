@@ -9,21 +9,60 @@
     <div id="projects-section">
         <h2 data-translate="Projetos">Projects</h2>
         
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <div class="dropdown">
+                <input type="text" data-translate="Filtrar por Linguagem & Framework" placeholder="Filter by Language & Framework" id="skillFilter" readonly>
+                <div class="dropdown-content">
+                    <a href="{% url 'projects' %}?lang={{ lang }}" class="skill-option {% if not selected_skill %}active{% endif %}" data-translate="Todos">All</a>
+                    {% for skill in skills %}
+                        <a href="?skill={{ skill.name }}&lang={{ lang }}" class="skill-option {% if selected_skill == skill.name %}active{% endif %}">{{ skill.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
         <div class="project-container">
             {% for project in projects %}
-                <div class="project-card">
-                    <div class="project-image" data-video-url="{{ project.video }}">
+                <div class="project-card" data-id="{{ project.id }}">
+                    <div class="project-image" data-video-url="{{ project.video.url }}" onclick="openVideoPopup(this.getAttribute('data-video-url'), '{{ lang }}')">
                         <img src="{{ project.thumbnail.url }}" alt="{{ project.title_en }}">
+                        <div class="overlay">
+                            <span class="overlay-text" data-translate="Mais detalhes">Show more</span>
+                        </div>
                     </div>                   
-                    <h3 class="project-title">{{ project.title_en }}</h3>
+                    <h3 class="project-title" data-title-en="{{ project.title_en }}" data-title-pt="{{ project.title_pt }}">
+                        {{ project.title_en }}
+                    </h3>
+                    <p class="project-description" style="display: none;" data-description-en="{{ project.description_en }}" data-description-pt="{{ project.description_pt }}">
+                        {{ project.description_en }}
+                    </p>
+                    {% if project.github_link %}
+                        <a style="display: none;" href="{{ project.github_link }}" target="_blank">GitHub <i class="bi bi-link-45deg"></i></a>
+                    {% endif %}
+                    <p style="display: none;">
+                        {% for skill in project.skills %}
+                            {{ skill.name }}{% if not forloop.last %} | {% endif %}
+                        {% endfor %}
+                    </p>
                 </div>
+            {% empty %}
+                <p data-translate="Nenhum projeto encontrado para a habilidade selecionada">No projects found for the selected skill.</p>
             {% endfor %}
         </div>
         
+        <!-- Popup for Project Details -->
         <div id="projectPopup" class="project-popup" style="display: none">
             <div class="popup-content">
                 <span class="close" id="popupClose">&times;</span>
-                <div id="popupVideo"></div>
+                <video id="popupVideo" controls></video>
+                <div id="popupInfo">
+                    <h3 id="popupTitle"></h3>
+                    <p id="popupDescription"></p>
+                    <h4 id="popupH4" data-translate="Linguagens & Frameworks">Languages & Frameworks:</h4>
+                    <p id="popupFooter"></p>
+                    <a id="popupGitHubLink" href="#" target="_blank">GitHub <i class="bi bi-link-45deg"></i></a>
+                </div>
             </div>
         </div>
     </div>
@@ -32,4 +71,11 @@
 
 {% block extra_js %}
 <script src="{% static 'js/popup.js' %}"></script>
+<script src="{% static 'js/skillFilter.js' %}"></script>
+<script src="{% static 'js/translations.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        updateLanguage('{{ lang }}');
+    });
+</script>
 {% endblock %}

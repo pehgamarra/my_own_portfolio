@@ -5,5 +5,3 @@ __pycache__
 local_settings.py
 /static/
 local_settings.py
-project_thumbnails/
-project_videos/

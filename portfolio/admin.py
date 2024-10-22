@@ -7,9 +7,7 @@ class SkillAdmin(admin.ModelAdmin):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ['title', 'is_featured']
-    list_editable = ['is_featured']
-    list_filter = ['is_featured']
+    list_display = ('title', 'date', 'github_link')
     filter_horizontal = ('skills',)
     fieldsets = (
         (None, {

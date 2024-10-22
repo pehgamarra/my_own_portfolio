@@ -1,54 +1,60 @@
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded');
+const projectImages = document.querySelectorAll('.project-image');
+const projectPopup = document.getElementById('projectPopup');
+const popupVideo = document.getElementById('popupVideo');
+const popupClose = document.getElementById('popupClose');
+const popupTitle = document.getElementById('popupTitle');
+const popupDescription = document.getElementById('popupDescription');
+const popupFooter = document.getElementById('popupFooter');
+const popupGitHubLink = document.getElementById('popupGitHubLink'); 
 
-    const projectImages = document.querySelectorAll('.project-image');
-    const projectPopup = document.getElementById('projectPopup');
-    const popupVideo = document.getElementById('popupVideo');
-    const popupClose = document.getElementById('popupClose');
+projectImages.forEach((image) => {
+    image.addEventListener('click', () => {
+        const videoSrc = image.getAttribute('data-video-url'); 
+        const title = image.nextElementSibling.innerText; 
+        const description = image.nextElementSibling.nextElementSibling.innerText;
+        const footer = image.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerText;
+        const githubLink = image.nextElementSibling.nextElementSibling.nextElementSibling.getAttribute('href');
 
-    console.log('Elements found:', {
-        projectImages: projectImages.length,
-        projectPopup: !!projectPopup,
-        popupVideo: !!popupVideo,
-        popupClose: !!popupClose
+        popupVideo.src = videoSrc; 
+        popupTitle.innerText = title; 
+        popupDescription.innerText = description; 
+        popupFooter.innerText = footer;
+        popupGitHubLink.href = githubLink;
+
+        addOverlay();
+        projectPopup.style.display = 'block'; 
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
     });
-
-    function openPopup(videoUrl) {
-        if (!popupVideo) {
-            console.error('popupVideo element not found');
-            return;
-        }
-
-        const videoId = videoUrl.split('v=')[1];
-        if (!videoId) {
-            console.error('Invalid YouTube URL');
-            return;
-        }
-
-        popupVideo.innerHTML = `
-            <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank">
-                <img src="https://img.youtube.com/vi/${videoId}/0.jpg" alt="Video Thumbnail" style="width: 100%; cursor: pointer;">
-                <div style="text-align: center; margin-top: 10px;">Click to watch on YouTube</div>
-            </a>
-        `;
-
-        projectPopup.style.display = 'block';
-    }
-
-    function closePopup() {
-        projectPopup.style.display = 'none';
-        popupVideo.innerHTML = '';
-    }
-
-    projectImages.forEach(image => {
-        image.addEventListener('click', () => {
-            const videoUrl = image.getAttribute('data-video-url');
-            console.log('Video URL:', videoUrl);
-            openPopup(videoUrl);
-        });
-    });
-
-    if (popupClose) {
-        popupClose.addEventListener('click', closePopup);
-    }
 });
+
+function addOverlay() {
+    const overlay = document.createElement('div');
+    overlay.id = 'popup-overlay';
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    overlay.style.zIndex = '999'; // Make sure this is below the popup's z-index
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener('click', (event) => {
+        if (event.target === overlay) {
+            closePopup();
+        }
+    });
+}
+
+function closePopup() {
+    projectPopup.style.display = 'none';
+    popupVideo.pause(); 
+    popupVideo.src = ''; 
+    document.body.style.overflow = ''; // Restore scrolling
+    const overlay = document.getElementById('popup-overlay');
+    if (overlay) {
+        overlay.remove();
+    }
+}
+
+popupClose.addEventListener('click', closePopup);
