@@ -77,7 +77,8 @@ document.addEventListener('DOMContentLoaded', function () {
             'Languages & Frameworks': 'Linguagens & Frameworks',
             'Show more': 'Mais detalhes',
             "Github Repository": "Repositorio do Github",
-            "All": "Todos"
+            "All": "Todos",
+            "View more": "Mais projetos"
         },
         
         en: {
@@ -153,7 +154,8 @@ document.addEventListener('DOMContentLoaded', function () {
             'Linguagens & Frameworks': 'Languages & Frameworks',
             "Mais detalhes": "Show more",
             "Repositorio do Github": "Github Repository",
-            "Todos": "All"
+            "Todos": "All",
+            "Mais projetos": "View more"
         }
 };
     
