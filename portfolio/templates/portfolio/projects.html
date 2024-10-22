@@ -9,65 +9,21 @@
     <div id="projects-section">
         <h2 data-translate="Projetos">Projects</h2>
         
-        <!-- Filter Section -->
-        <div class="filter-section">
-            <div class="filter-options">
-                <label class="filter-option">
-                    <input type="radio" name="skill-filter" value="all" {% if not selected_skill %}checked{% endif %}>
-                    <span data-translate="Todos">All</span>
-                </label>
-                {% for skill in skills %}
-                <label class="filter-option">
-                    <input type="radio" name="skill-filter" value="{{ skill.name }}" {% if selected_skill == skill.name %}checked{% endif %}>
-                    <span>{{ skill.name }}</span>
-                </label>
-                {% endfor %}
-            </div>
-        </div>
-
         <div class="project-container">
             {% for project in projects %}
-                <div class="project-card" data-id="{{ project.id }}">
+                <div class="project-card">
                     <div class="project-image" data-video-url="{{ project.video }}">
                         <img src="{{ project.thumbnail.url }}" alt="{{ project.title_en }}">
-                        <div class="overlay">
-                            <span class="overlay-text" data-translate="Mais detalhes">Show more</span>
-                        </div>
                     </div>                   
-                    <h3 class="project-title" data-title-en="{{ project.title_en }}" data-title-pt="{{ project.title_pt }}">
-                        {{ project.title_en }}
-                    </h3>
-                    <p class="project-description" style="display: none;" data-description-en="{{ project.description_en }}" data-description-pt="{{ project.description_pt }}">
-                        {{ project.description_en }}
-                    </p>
-                    {% if project.github_link %}
-                        <a style="display: none;" href="{{ project.github_link }}" target="_blank">GitHub <i class="bi bi-link-45deg"></i></a>
-                    {% endif %}
-                    <p style="display: none;">
-                        {% for skill in project.skills.all %}
-                            {{ skill.name }}{% if not forloop.last %} | {% endif %}
-                        {% endfor %}
-                    </p>
+                    <h3 class="project-title">{{ project.title_en }}</h3>
                 </div>
-            {% empty %}
-                <p data-translate="Nenhum projeto encontrado para a habilidade selecionada">No projects found for the selected skill.</p>
             {% endfor %}
         </div>
         
-        <!-- Popup for Project Details -->
         <div id="projectPopup" class="project-popup" style="display: none">
             <div class="popup-content">
                 <span class="close" id="popupClose">&times;</span>
                 <div id="popupVideo"></div>
-                <div id="popupInfo">
-                    <h3 id="popupTitle"></h3>
-                    <p id="popupDescription"></p>
-                    <h4 id="popupH4">Languages & Frameworks:</h4>
-                    <div id="popupSkills" class="skills-container"></div>
-                    <a id="popupGitHubLink" href="#" target="_blank">
-                        GitHub Repository
-                    </a>
-                </div>
             </div>
         </div>
     </div>
@@ -76,16 +32,4 @@
 
 {% block extra_js %}
 <script src="{% static 'js/popup.js' %}"></script>
-<script src="{% static 'js/skillFilter.js' %}"></script>
-<script src="{% static 'js/translations.js' %}"></script>
-<script src="https://www.youtube.com/iframe_api"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        if (typeof updateLanguage === 'function') {
-            updateLanguage('{{ lang }}');
-        } else {
-            console.error('updateLanguage function not found');
-        }
-    });
-</script>
 {% endblock %}
