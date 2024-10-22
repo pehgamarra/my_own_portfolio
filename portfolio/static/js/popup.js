@@ -5,8 +5,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const popupClose = document.getElementById('popupClose');
     const popupTitle = document.getElementById('popupTitle');
     const popupDescription = document.getElementById('popupDescription');
-    const popupFooter = document.getElementById('popupFooter');
     const popupGitHubLink = document.getElementById('popupGitHubLink');
+    const popupSkills = document.getElementById('popupSkills');
+
+    // Verificar se todos os elementos necessários existem
+    if (!projectPopup || !popupVideo || !popupClose || !popupTitle || !popupDescription || !popupGitHubLink || !popupSkills) {
+        console.error('Um ou mais elementos necessários não foram encontrados no DOM');
+        return;
+    }
 
     function extractYouTubeId(url) {
         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -17,22 +23,36 @@ document.addEventListener('DOMContentLoaded', function() {
     function openVideoPopup(videoUrl) {
         const videoId = extractYouTubeId(videoUrl);
         if (videoId) {
-            popupVideo.src = `https://www.youtube-nocookie.com/embed/${videoId}`;
-            popupVideo.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-            projectPopup.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
-            addOverlay();
+            // Remova o iframe existente
+            while (popupVideo.firstChild) {
+                popupVideo.removeChild(popupVideo.firstChild);
+            }
 
-            popupVideo.onerror = function() {
-                console.error('Failed to load video');
-                popupVideo.style.display = 'none';
-                const errorMessage = document.createElement('p');
-                errorMessage.textContent = 'Failed to load video. Please try again later.';
-                popupVideo.parentNode.insertBefore(errorMessage, popupVideo);
-            };
+            // Crie um novo div para o player
+            const playerDiv = document.createElement('div');
+            playerDiv.id = 'youtube-player';
+            popupVideo.appendChild(playerDiv);
+
+            // Inicialize o player do YouTube
+            new YT.Player('youtube-player', {
+                height: '360',
+                width: '640',
+                videoId: videoId,
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+
+            projectPopup.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            addOverlay();
         } else {
             console.error('Invalid YouTube URL');
         }
+    }
+
+    function onPlayerReady(event) {
+        event.target.playVideo();
     }
 
     function addOverlay() {
@@ -71,10 +91,11 @@ document.addEventListener('DOMContentLoaded', function() {
         image.addEventListener('click', () => {
             const videoUrl = image.getAttribute('data-video-url');
             console.log('Video URL:', videoUrl); // Log para debug
-            const title = image.nextElementSibling.innerText;
-            const description = image.nextElementSibling.nextElementSibling.innerText;
-            const skills = image.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerText.split('|');
-            const githubLink = image.nextElementSibling.nextElementSibling.nextElementSibling.getAttribute('href');
+            
+            const title = image.closest('.project-card').querySelector('.project-title').innerText;
+            const description = image.closest('.project-card').querySelector('.project-description').innerText;
+            const skills = image.closest('.project-card').querySelector('p:last-child').innerText.split('|');
+            const githubLink = image.closest('.project-card').querySelector('a[href^="https://github.com"]')?.getAttribute('href');
 
             openVideoPopup(videoUrl);
 
@@ -82,7 +103,6 @@ document.addEventListener('DOMContentLoaded', function() {
             popupDescription.innerText = description;
             
             // Clear previous skills
-            const popupSkills = document.getElementById('popupSkills');
             popupSkills.innerHTML = '';
             
             // Add new skills
@@ -93,7 +113,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 popupSkills.appendChild(skillTag);
             });
 
-            popupGitHubLink.href = githubLink;
+            if (githubLink) {
+                popupGitHubLink.href = githubLink;
+                popupGitHubLink.style.display = 'inline-block';
+            } else {
+                popupGitHubLink.style.display = 'none';
+            }
         });
     });
 
