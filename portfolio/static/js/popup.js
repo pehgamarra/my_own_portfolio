@@ -18,9 +18,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const videoId = extractYouTubeId(videoUrl);
         if (videoId) {
             popupVideo.src = `https://www.youtube-nocookie.com/embed/${videoId}`;
+            popupVideo.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
             projectPopup.style.display = 'block';
             document.body.style.overflow = 'hidden'; // Prevent scrolling
             addOverlay();
+
+            popupVideo.onerror = function() {
+                console.error('Failed to load video');
+                popupVideo.style.display = 'none';
+                const errorMessage = document.createElement('p');
+                errorMessage.textContent = 'Failed to load video. Please try again later.';
+                popupVideo.parentNode.insertBefore(errorMessage, popupVideo);
+            };
         } else {
             console.error('Invalid YouTube URL');
         }
@@ -61,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
     projectImages.forEach((image) => {
         image.addEventListener('click', () => {
             const videoUrl = image.getAttribute('data-video-url');
+            console.log('Video URL:', videoUrl); // Log para debug
             const title = image.nextElementSibling.innerText;
             const description = image.nextElementSibling.nextElementSibling.innerText;
             const skills = image.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerText.split('|');
