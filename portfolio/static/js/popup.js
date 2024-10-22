@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function closePopup() {
         projectPopup.style.display = 'none';
-        popupVideo.src = '';
+        popupVideo.innerHTML = ''; // Clear the video
         document.body.style.overflow = ''; // Restore scrolling
         removeOverlay();
     }
@@ -92,42 +92,47 @@ document.addEventListener('DOMContentLoaded', function() {
             const videoUrl = image.getAttribute('data-video-url');
             console.log('Video URL:', videoUrl); // Log para debug
             
-            const title = image.closest('.project-card').querySelector('.project-title').innerText;
-            const description = image.closest('.project-card').querySelector('.project-description').innerText;
-            const skills = image.closest('.project-card').querySelector('p:last-child').innerText.split('|');
-            const githubLink = image.closest('.project-card').querySelector('a[href^="https://github.com"]')?.getAttribute('href');
+            const projectCard = image.closest('.project-card');
+            if (!projectCard) {
+                console.error('Project card not found');
+                return;
+            }
 
-            openVideoPopup(videoUrl);
+            const titleElement = projectCard.querySelector('.project-title');
+            const descriptionElement = projectCard.querySelector('.project-description');
+            const skillsElement = projectCard.querySelector('p:last-child');
+            const githubLinkElement = projectCard.querySelector('a[href^="https://github.com"]');
 
-            popupTitle.innerText = title;
-            popupDescription.innerText = description;
+            if (titleElement) popupTitle.innerText = titleElement.innerText;
+            if (descriptionElement) popupDescription.innerText = descriptionElement.innerText;
             
             // Clear previous skills
             popupSkills.innerHTML = '';
             
             // Add new skills
-            skills.forEach(skill => {
-                const skillTag = document.createElement('span');
-                skillTag.className = 'skill-tag';
-                skillTag.textContent = skill.trim();
-                popupSkills.appendChild(skillTag);
-            });
+            if (skillsElement) {
+                const skills = skillsElement.innerText.split('|');
+                skills.forEach(skill => {
+                    const skillTag = document.createElement('span');
+                    skillTag.className = 'skill-tag';
+                    skillTag.textContent = skill.trim();
+                    popupSkills.appendChild(skillTag);
+                });
+            }
 
-            if (githubLink) {
-                popupGitHubLink.href = githubLink;
+            if (githubLinkElement) {
+                popupGitHubLink.href = githubLinkElement.getAttribute('href');
                 popupGitHubLink.style.display = 'inline-block';
             } else {
                 popupGitHubLink.style.display = 'none';
             }
+
+            openVideoPopup(videoUrl);
         });
     });
 
     if (popupClose) {
-        popupClose.addEventListener('click', (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            closePopup();
-        });
+        popupClose.addEventListener('click', closePopup);
     }
 
     projectPopup.addEventListener('click', (event) => {
