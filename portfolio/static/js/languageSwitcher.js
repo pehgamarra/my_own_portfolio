@@ -75,8 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
             'All': 'Todos',
             'No projects found for the selected skill.': 'Nenhum projeto encontrado para a habilidade selecionada.',
             'Languages & Frameworks': 'Linguagens & Frameworks',
-            'Show more': 'Mais detalhes',
-            'GitHub Repository': 'Repositório GitHub'
+            'Show more': 'Mais detalhes'
         },
         
         en: {
@@ -150,8 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
             'Todos': 'All',
             'Nenhum projeto encontrado para a habilidade selecionada': 'No projects found for the selected skill.',
             'Linguagens & Frameworks': 'Languages & Frameworks',
-            "Mais detalhes": "Show more",
-            "Repositório GitHub": "GitHub Repository"
+            "Mais detalhes": "Show more"
         }
 };
     
@@ -205,4 +203,3 @@ document.addEventListener('DOMContentLoaded', function () {
         updateTranslations();
     };
 });
-

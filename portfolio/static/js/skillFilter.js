@@ -1,24 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const filterOptions = document.querySelectorAll('.filter-option input[type="radio"]');
-    
-    filterOptions.forEach(option => {
-        option.addEventListener('change', function() {
-            const selectedSkill = this.value;
-            const currentUrl = new URL(window.location.href);
-            
-            if (selectedSkill === 'all') {
-                currentUrl.searchParams.delete('skill');
-            } else {
-                currentUrl.searchParams.set('skill', selectedSkill);
+    const skillFilter = document.getElementById('skillFilter');
+    const dropdownContent = document.querySelector('.dropdown-content');
+
+    skillFilter.addEventListener('click', function() {
+        dropdownContent.classList.toggle('show');
+    });
+
+    window.addEventListener('click', function(event) {
+        if (!event.target.matches('#skillFilter')) {
+            if (dropdownContent.classList.contains('show')) {
+                dropdownContent.classList.remove('show');
             }
-            
-            // Manter o parâmetro de idioma, se existir
-            const lang = currentUrl.searchParams.get('lang');
-            if (lang) {
-                currentUrl.searchParams.set('lang', lang);
-            }
-            
-            window.location.href = currentUrl.toString();
+        }
+    });
+
+    const skillOptions = document.querySelectorAll('.skill-option');
+    skillOptions.forEach(option => {
+        option.addEventListener('click', function(e) {
+            e.preventDefault();
+            skillFilter.value = this.textContent;
+            dropdownContent.classList.remove('show');
+            window.location.href = this.getAttribute('href');
         });
     });
+
+    const activeSkill = document.querySelector('.skill-option.active');
+    if (activeSkill) {
+        skillFilter.value = activeSkill.textContent;
+    }
 });
