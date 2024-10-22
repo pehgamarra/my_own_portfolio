@@ -79,24 +79,14 @@
 <script src="{% static 'js/popup.js' %}"></script>
 <script src="{% static 'js/skillFilter.js' %}"></script>
 <script src="{% static 'js/translations.js' %}"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
 <script>
-    function loadYouTubeVideo(videoId) {
-    new YT.Player('youtube-player', {
-        height: '360',
-        width: '640',
-        videoId: videoId,
-        events: {
-            'onReady': onPlayerReady
-        }
-    });
-}
-
-function onPlayerReady(event) {
-    event.target.playVideo();
-}
     document.addEventListener('DOMContentLoaded', function() {
-        updateLanguage('{{ lang }}');
+        if (typeof updateLanguage === 'function') {
+            updateLanguage('{{ lang }}');
+        } else {
+            console.error('updateLanguage function not found');
+        }
     });
 </script>
 {% endblock %}
-
