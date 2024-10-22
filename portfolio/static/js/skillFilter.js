@@ -29,3 +29,33 @@ document.addEventListener('DOMContentLoaded', function() {
         skillFilter.value = activeSkill.textContent;
     }
 });
+
+function initializeSkillFilter() {
+    const skillButtons = document.querySelectorAll('.skill-button');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    skillButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const selectedSkill = this.getAttribute('data-skill');
+            
+            // Remove active class from all buttons
+            skillButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+
+            // Filter projects
+            projectCards.forEach(card => {
+                const cardSkills = card.getAttribute('data-skills').split(',');
+                if (selectedSkill === 'all' || cardSkills.includes(selectedSkill)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+}
+
+// Ensure the function is called after the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', initializeSkillFilter);

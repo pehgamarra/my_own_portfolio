@@ -11,20 +11,17 @@
         
         <!-- Filter Section -->
         <div class="filter-section">
-            <div class="dropdown">
-                <input type="text" data-translate="Filtrar por Linguagem & Framework" placeholder="Filter by Language & Framework" id="skillFilter" readonly>
-                <div class="dropdown-content">
-                    <a href="{% url 'projects' %}?lang={{ lang }}" class="skill-option {% if not selected_skill %}active{% endif %}" data-translate="Todos">All</a>
-                    {% for skill in skills %}
-                        <a href="?skill={{ skill.name }}&lang={{ lang }}" class="skill-option {% if selected_skill == skill.name %}active{% endif %}">{{ skill.name }}</a>
-                    {% endfor %}
-                </div>
+            <div class="skill-filter">
+                <button class="skill-button active" data-skill="all" data-translate="Todos">All</button>
+                {% for skill in skills %}
+                    <button class="skill-button" data-skill="{{ skill.name }}">{{ skill.name }}</button>
+                {% endfor %}
             </div>
         </div>
 
         <div class="project-container">
             {% for project in projects %}
-                <div class="project-card" data-id="{{ project.id }}">
+                <div class="project-card" data-id="{{ project.id }}" data-skills="{% for skill in project.skills.all %}{{ skill.name }}{% if not forloop.last %},{% endif %}{% endfor %}">
                     <div class="project-image" data-video-url="{{ project.get_video_url }}" onclick="openVideoPopup(this.getAttribute('data-video-url'), '{{ lang }}')">
                         <img src="{{ project.get_thumbnail_url }}" alt="{{ project.get_title }}">
                         <div class="overlay">
@@ -75,10 +72,11 @@
 {% block extra_js %}
 <script src="{% static 'js/popup.js' %}"></script>
 <script src="{% static 'js/skillFilter.js' %}"></script>
-<script src="{% static 'js/translations.js' %}"></script>
+<script src="{% static 'js/languageSwitcher.js' %}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         updateLanguage('{{ lang }}');
+        initializeSkillFilter();
     });
 </script>
 {% endblock %}
