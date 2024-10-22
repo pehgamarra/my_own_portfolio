@@ -4,4 +4,9 @@
 __pycache__
 local_settings.py
 /static/
+<<<<<<< HEAD
 local_settings.py
+=======
+local_settings.py
+.env
+>>>>>>> bb7e1d0e1a1c186d18d91d18078ad97923890be3

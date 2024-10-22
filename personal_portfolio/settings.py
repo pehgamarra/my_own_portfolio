@@ -12,17 +12,21 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from cloudinary import config
+from dotenv import load_dotenv
+from django.core.exceptions import ImproperlyConfigured
 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
+load_dotenv()
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-u$px!5h8im%opw8j-ry^qw4uui#$1c528nlzjy$p+xbo%94ztl'
+# Configura a SECRET_KEY
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+
+if not SECRET_KEY:
+    raise ImproperlyConfigured("DJANGO_SECRET_KEY must be set in .env file")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -133,4 +137,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 try:
     from .local_settings import *
 except ImportError:
+<<<<<<< HEAD
     print ("Looks like no local file. You must be on production")
+=======
+    print ("Looks like no local file. You must be on production")
+
+config(
+    cloud_name = os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    api_key = os.environ.get('CLOUDINARY_API_KEY'),
+    api_secret = os.environ.get('CLOUDINARY_API_SECRET')
+)
+>>>>>>> bb7e1d0e1a1c186d18d91d18078ad97923890be3

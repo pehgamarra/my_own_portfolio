@@ -25,8 +25,13 @@
         <div class="project-container">
             {% for project in projects %}
                 <div class="project-card" data-id="{{ project.id }}">
+<<<<<<< HEAD
                     <div class="project-image" data-video-url="{{ project.video.url }}" onclick="openVideoPopup(this.getAttribute('data-video-url'), '{{ lang }}')">
                         <img src="{{ project.thumbnail.url }}" alt="{{ project.title_en }}">
+=======
+                    <div class="project-image" data-video-url="{{ project.get_video_url }}" onclick="openVideoPopup(this.getAttribute('data-video-url'), '{{ lang }}')">
+                        <img src="{{ project.get_thumbnail_url }}" alt="{{ project.title_en }}">
+>>>>>>> bb7e1d0e1a1c186d18d91d18078ad97923890be3
                         <div class="overlay">
                             <span class="overlay-text" data-translate="Mais detalhes">Show more</span>
                         </div>
@@ -78,4 +83,8 @@
         updateLanguage('{{ lang }}');
     });
 </script>
+<<<<<<< HEAD
 {% endblock %}
+=======
+{% endblock %}
+>>>>>>> bb7e1d0e1a1c186d18d91d18078ad97923890be3
