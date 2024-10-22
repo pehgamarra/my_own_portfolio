@@ -6,9 +6,11 @@ const popupTitle = document.getElementById('popupTitle');
 const popupDescription = document.getElementById('popupDescription');
 const popupFooter = document.getElementById('popupFooter');
 const popupGitHubLink = document.getElementById('popupGitHubLink'); 
+const popupSkills = document.getElementById('popupSkills');
 
 projectImages.forEach((image) => {
     image.addEventListener('click', () => {
+<<<<<<< HEAD
         const videoSrc = image.getAttribute('data-video-url'); 
         const title = image.nextElementSibling.innerText; 
         const description = image.nextElementSibling.nextElementSibling.innerText;
@@ -32,6 +34,10 @@ projectImages.forEach((image) => {
 =======
         document.body.style.overflow = 'hidden'; 
 >>>>>>> bb7e1d0e1a1c186d18d91d18078ad97923890be3
+=======
+        const projectCard = image.closest('.project-card');
+        fillPopupContent(projectCard);
+>>>>>>> 9d2a0f1f30a584bd8a9b1f2574335bf688cdbec2
     });
 });
 
@@ -74,3 +80,31 @@ function closePopup() {
 }
 
 popupClose.addEventListener('click', closePopup);
+
+function fillPopupContent(project) {
+    const videoSrc = project.querySelector('.project-image').getAttribute('data-video-url'); 
+    const title = project.querySelector('.project-title').textContent;
+    const description = project.querySelector('.project-description').textContent;
+    const skills = project.querySelector('p:last-child').textContent.split('|');
+    const githubLink = project.querySelector('a[href^="http"]')?.href;
+
+    popupVideo.src = videoSrc; 
+    popupVideo.load();
+    popupTitle.innerText = title; 
+    popupDescription.innerText = description; 
+    popupGitHubLink.href = githubLink || '#';
+    popupGitHubLink.style.display = githubLink ? 'inline-block' : 'none';
+
+    const skillsContainer = document.getElementById('popupSkills');
+    skillsContainer.innerHTML = '';
+    skills.forEach(skill => {
+        const skillTag = document.createElement('span');
+        skillTag.className = 'skill-tag';
+        skillTag.textContent = skill.trim();
+        skillsContainer.appendChild(skillTag);
+    });
+
+    addOverlay();
+    projectPopup.style.display = 'block'; 
+    document.body.style.overflow = 'hidden'; 
+}

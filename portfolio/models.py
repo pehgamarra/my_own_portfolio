@@ -23,6 +23,7 @@ class Project(models.Model):
     thumbnail = CloudinaryField('image', blank=True, null=True)
 >>>>>>> bb7e1d0e1a1c186d18d91d18078ad97923890be3
     github_link = models.URLField(blank=True, null=True)
+    featured = models.BooleanField(default=False, verbose_name="Destaque")
 
     def __str__(self):
         return self.title
