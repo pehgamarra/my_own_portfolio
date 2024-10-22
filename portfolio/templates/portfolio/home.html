@@ -52,7 +52,7 @@
             <div id="projects-section">
                 <h2 data-translate="Projetos">Projects</h2>
                 <div class="project-container">
-                    {% for project in featured_projects %}
+                    {% for project in projects %}
                         <div class="project-card" data-id="{{ project.id }}">
                             <div class="project-image" data-video-url="{{ project.get_video_url }}" onclick="openVideoPopup(this.getAttribute('data-video-url'), '{{ lang }}')">
                                 <img src="{{ project.get_thumbnail_url }}" alt="{{ project.get_title }}">
@@ -76,7 +76,7 @@
                             </p>
                         </div>
                     {% empty %}
-                        <p data-translate="Nenhum projeto em destaque encontrado">No featured projects found.</p>
+                        <p data-translate="Nenhum projeto encontrado para a habilidade selecionada">No projects found for the selected skill.</p>
                     {% endfor %}
                 </div>
                 
@@ -97,8 +97,11 @@
                             <h3 id="popupTitle"></h3>
                             <p id="popupDescription"></p>
                             <h4 id="popupH4" data-translate="Linguagens & Frameworks">Languages & Frameworks:</h4>
-                            <p id="popupFooter"></p>
-                            <a id="popupGitHubLink" href="#" target="_blank">GitHub <i class="bi bi-link-45deg"></i></a>
+                            <div id="popupSkills"></div>
+                            <a id="popupGitHubLink" href="#" target="_blank">
+                                <span data-translate="Repositorio do Github">GitHub Repository</span>
+                                <i class="bi bi-link-45deg"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -537,4 +540,7 @@
 <script src="{% static 'js/modal.js' %}"></script>
 <script src="{% static 'js/popup.js' %}"></script>
 <script src="{% static 'js/certificate-popup.js' %}"></script>
+<script src="{% static 'js/languageSwitcher.js' %}"></script>
+
 {% endblock %}
+

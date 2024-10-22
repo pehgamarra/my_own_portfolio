@@ -75,7 +75,8 @@ document.addEventListener('DOMContentLoaded', function () {
             'All': 'Todos',
             'No projects found for the selected skill.': 'Nenhum projeto encontrado para a habilidade selecionada.',
             'Languages & Frameworks': 'Linguagens & Frameworks',
-            'Show more': 'Mais detalhes'
+            'Show more': 'Mais detalhes',
+            "Github Repository": "Repositorio do Github"
         },
         
         en: {
@@ -149,7 +150,8 @@ document.addEventListener('DOMContentLoaded', function () {
             'Todos': 'All',
             'Nenhum projeto encontrado para a habilidade selecionada': 'No projects found for the selected skill.',
             'Linguagens & Frameworks': 'Languages & Frameworks',
-            "Mais detalhes": "Show more"
+            "Mais detalhes": "Show more",
+            "Repositorio do Github": "Github Repository"
         }
 };
     
@@ -171,20 +173,18 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        if (window.location.pathname.includes('/projects')) {
-            document.querySelectorAll('.project-card').forEach(card => {
-                const title = card.querySelector('.project-title');
-                const description = card.querySelector('.project-description');
+        document.querySelectorAll('.project-card').forEach(card => {
+            const title = card.querySelector('.project-title');
+            const description = card.querySelector('.project-description');
 
-                if (currentLanguage === 'pt') {
-                    title.textContent = title.getAttribute('data-title-pt') || title.textContent;
-                    description.textContent = description.getAttribute('data-description-pt') || description.textContent;
-                } else {
-                    title.textContent = title.getAttribute('data-title-en') || title.textContent;
-                    description.textContent = description.getAttribute('data-description-en') || description.textContent;
-                }
-            });
-        }
+            if (currentLanguage === 'pt') {
+                title.textContent = title.getAttribute('data-title-pt') || title.textContent;
+                description.textContent = description.getAttribute('data-description-pt') || description.textContent;
+            } else {
+                title.textContent = title.getAttribute('data-title-en') || title.textContent;
+                description.textContent = description.getAttribute('data-description-en') || description.textContent;
+            }
+        });
     }
 
     englishButton.addEventListener('click', function () {

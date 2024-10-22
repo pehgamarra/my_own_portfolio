@@ -2,9 +2,11 @@ from django.shortcuts import render
 from .models import Project, Skill
 
 def home(request):
-    featured_projects = Project.objects.filter(featured=True)
+    featured_projects = Project.objects.filter(featured=True)[:3]
+    lang = request.GET.get('lang', 'en')
     context = {
-        'featured_projects': featured_projects,
+        'projects': featured_projects,
+        'lang': lang,
     }
     return render(request, 'portfolio/home.html', context)
 

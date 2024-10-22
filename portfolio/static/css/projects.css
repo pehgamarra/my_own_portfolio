@@ -280,3 +280,20 @@
 }
 
 .show {display: block;}
+
+#popupSkills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: first baseline;
+    gap: 8px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.skill-tag {
+    background-color: #474037;
+    color: #cfa266;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+}
