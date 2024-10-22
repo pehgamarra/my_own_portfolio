@@ -14,9 +14,11 @@ class Project(models.Model):
     description_pt = models.TextField(blank=True, verbose_name="Descrição em Português")
     date = models.DateField(default=timezone.now)
     skills = models.ManyToManyField(Skill, blank=True)
-    video = models.FileField(upload_to='project_videos', blank=True, null=True)
+    video = models.URLField(blank=True, null=True, verbose_name="YouTube Video Link")
     thumbnail = models.ImageField(upload_to='project_thumbnails/', blank=True, null=True)
     github_link = models.URLField(blank=True, null=True)
+    is_featured = models.BooleanField(default=False)
+    featured_order = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -26,3 +28,6 @@ class Project(models.Model):
 
     def get_description(self, lang='en'):
         return self.description_pt if lang == 'pt' else self.description
+
+    class Meta:
+        ordering = ['featured_order']

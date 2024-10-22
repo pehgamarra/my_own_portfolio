@@ -1,34 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const skillFilter = document.getElementById('skillFilter');
-    const dropdownContent = document.querySelector('.dropdown-content');
-
-    skillFilter.addEventListener('click', function() {
-        dropdownContent.classList.toggle('show');
-    });
-
-    // Fechar o dropdown se clicar fora dele
-    window.addEventListener('click', function(event) {
-        if (!event.target.matches('#skillFilter')) {
-            if (dropdownContent.classList.contains('show')) {
-                dropdownContent.classList.remove('show');
+    const filterOptions = document.querySelectorAll('.filter-option input[type="radio"]');
+    
+    filterOptions.forEach(option => {
+        option.addEventListener('change', function() {
+            const selectedSkill = this.value;
+            const currentUrl = new URL(window.location.href);
+            
+            if (selectedSkill === 'all') {
+                currentUrl.searchParams.delete('skill');
+            } else {
+                currentUrl.searchParams.set('skill', selectedSkill);
             }
-        }
-    });
-
-    // Atualizar o texto do input quando uma opção é selecionada
-    const skillOptions = document.querySelectorAll('.skill-option');
-    skillOptions.forEach(option => {
-        option.addEventListener('click', function(e) {
-            e.preventDefault();
-            skillFilter.value = this.textContent;
-            dropdownContent.classList.remove('show');
-            window.location.href = this.getAttribute('href');
+            
+            // Manter o parâmetro de idioma, se existir
+            const lang = currentUrl.searchParams.get('lang');
+            if (lang) {
+                currentUrl.searchParams.set('lang', lang);
+            }
+            
+            window.location.href = currentUrl.toString();
         });
     });
-
-    // Definir o valor inicial do input
-    const activeSkill = document.querySelector('.skill-option.active');
-    if (activeSkill) {
-        skillFilter.value = activeSkill.textContent;
-    }
 });
