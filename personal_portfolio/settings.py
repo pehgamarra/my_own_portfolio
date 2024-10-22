@@ -29,7 +29,7 @@ if not SECRET_KEY:
     raise ImproperlyConfigured("DJANGO_SECRET_KEY must be set in .env file")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['pehgamarra.pythonanywhere.com']
 
@@ -124,7 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR / 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -137,9 +137,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 try:
     from .local_settings import *
 except ImportError:
-<<<<<<< HEAD
-    print ("Looks like no local file. You must be on production")
-=======
     print ("Looks like no local file. You must be on production")
 
 config(
@@ -147,4 +144,3 @@ config(
     api_key = os.environ.get('CLOUDINARY_API_KEY'),
     api_secret = os.environ.get('CLOUDINARY_API_SECRET')
 )
->>>>>>> bb7e1d0e1a1c186d18d91d18078ad97923890be3

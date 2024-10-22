@@ -10,34 +10,8 @@ const popupSkills = document.getElementById('popupSkills');
 
 projectImages.forEach((image) => {
     image.addEventListener('click', () => {
-<<<<<<< HEAD
-        const videoSrc = image.getAttribute('data-video-url'); 
-        const title = image.nextElementSibling.innerText; 
-        const description = image.nextElementSibling.nextElementSibling.innerText;
-        const footer = image.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerText;
-        const githubLink = image.nextElementSibling.nextElementSibling.nextElementSibling.getAttribute('href');
-
-        popupVideo.src = videoSrc; 
-<<<<<<< HEAD
-=======
-        popupVideo.load();
->>>>>>> bb7e1d0e1a1c186d18d91d18078ad97923890be3
-        popupTitle.innerText = title; 
-        popupDescription.innerText = description; 
-        popupFooter.innerText = footer;
-        popupGitHubLink.href = githubLink;
-
-        addOverlay();
-        projectPopup.style.display = 'block'; 
-<<<<<<< HEAD
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
-=======
-        document.body.style.overflow = 'hidden'; 
->>>>>>> bb7e1d0e1a1c186d18d91d18078ad97923890be3
-=======
         const projectCard = image.closest('.project-card');
         fillPopupContent(projectCard);
->>>>>>> 9d2a0f1f30a584bd8a9b1f2574335bf688cdbec2
     });
 });
 
@@ -50,11 +24,7 @@ function addOverlay() {
     overlay.style.width = '100%';
     overlay.style.height = '100%';
     overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-<<<<<<< HEAD
-    overlay.style.zIndex = '999'; // Make sure this is below the popup's z-index
-=======
     overlay.style.zIndex = '999'; 
->>>>>>> bb7e1d0e1a1c186d18d91d18078ad97923890be3
     document.body.appendChild(overlay);
 
     overlay.addEventListener('click', (event) => {
@@ -68,11 +38,7 @@ function closePopup() {
     projectPopup.style.display = 'none';
     popupVideo.pause(); 
     popupVideo.src = ''; 
-<<<<<<< HEAD
-    document.body.style.overflow = ''; // Restore scrolling
-=======
     document.body.style.overflow = '';
->>>>>>> bb7e1d0e1a1c186d18d91d18078ad97923890be3
     const overlay = document.getElementById('popup-overlay');
     if (overlay) {
         overlay.remove();

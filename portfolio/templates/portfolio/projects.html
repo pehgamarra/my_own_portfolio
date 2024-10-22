@@ -21,20 +21,9 @@
 
         <div class="project-container">
             {% for project in projects %}
-<<<<<<< HEAD
-                <div class="project-card" data-id="{{ project.id }}">
-<<<<<<< HEAD
-                    <div class="project-image" data-video-url="{{ project.video.url }}" onclick="openVideoPopup(this.getAttribute('data-video-url'), '{{ lang }}')">
-                        <img src="{{ project.thumbnail.url }}" alt="{{ project.title_en }}">
-=======
-                    <div class="project-image" data-video-url="{{ project.get_video_url }}" onclick="openVideoPopup(this.getAttribute('data-video-url'), '{{ lang }}')">
-                        <img src="{{ project.get_thumbnail_url }}" alt="{{ project.title_en }}">
->>>>>>> bb7e1d0e1a1c186d18d91d18078ad97923890be3
-=======
                 <div class="project-card" data-id="{{ project.id }}" data-skills="{% for skill in project.skills.all %}{{ skill.name }}{% if not forloop.last %},{% endif %}{% endfor %}">
                     <div class="project-image" data-video-url="{{ project.get_video_url }}" onclick="openVideoPopup(this.getAttribute('data-video-url'), '{{ lang }}')">
                         <img src="{{ project.get_thumbnail_url }}" alt="{{ project.get_title }}">
->>>>>>> 9d2a0f1f30a584bd8a9b1f2574335bf688cdbec2
                         <div class="overlay">
                             <span class="overlay-text" data-translate="Mais detalhes">Show more</span>
                         </div>
@@ -90,8 +79,4 @@
         initializeSkillFilter();
     });
 </script>
-<<<<<<< HEAD
 {% endblock %}
-=======
-{% endblock %}
->>>>>>> bb7e1d0e1a1c186d18d91d18078ad97923890be3
