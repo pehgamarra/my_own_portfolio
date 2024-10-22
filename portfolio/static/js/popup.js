@@ -1,9 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM fully loaded and parsed');
-
     const projectImages = document.querySelectorAll('.project-image');
-    console.log('Number of project images found:', projectImages.length);
-
     const projectPopup = document.getElementById('projectPopup');
     const popupVideo = document.getElementById('popupVideo');
     const popupClose = document.getElementById('popupClose');
@@ -13,14 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const popupSkills = document.getElementById('popupSkills');
 
     // Verificar se todos os elementos necessários existem
-    if (!projectPopup) console.error('projectPopup not found');
-    if (!popupVideo) console.error('popupVideo not found');
-    if (!popupClose) console.error('popupClose not found');
-    if (!popupTitle) console.error('popupTitle not found');
-    if (!popupDescription) console.error('popupDescription not found');
-    if (!popupGitHubLink) console.error('popupGitHubLink not found');
-    if (!popupSkills) console.error('popupSkills not found');
-
     if (!projectPopup || !popupVideo || !popupClose || !popupTitle || !popupDescription || !popupGitHubLink || !popupSkills) {
         console.error('Um ou mais elementos necessários não foram encontrados no DOM');
         return;
@@ -33,10 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function openVideoPopup(videoUrl) {
-        console.log('Attempting to open video popup with URL:', videoUrl);
         const videoId = extractYouTubeId(videoUrl);
         if (videoId) {
-            console.log('Valid YouTube ID found:', videoId);
             // Remova o iframe existente
             while (popupVideo.firstChild) {
                 popupVideo.removeChild(popupVideo.firstChild);
