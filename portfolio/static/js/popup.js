@@ -16,6 +16,7 @@ projectImages.forEach((image) => {
         const githubLink = image.nextElementSibling.nextElementSibling.nextElementSibling.getAttribute('href');
 
         popupVideo.src = videoSrc; 
+        popupVideo.load();
         popupTitle.innerText = title; 
         popupDescription.innerText = description; 
         popupFooter.innerText = footer;
@@ -23,7 +24,7 @@ projectImages.forEach((image) => {
 
         addOverlay();
         projectPopup.style.display = 'block'; 
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
+        document.body.style.overflow = 'hidden'; 
     });
 });
 
@@ -36,7 +37,7 @@ function addOverlay() {
     overlay.style.width = '100%';
     overlay.style.height = '100%';
     overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-    overlay.style.zIndex = '999'; // Make sure this is below the popup's z-index
+    overlay.style.zIndex = '999'; 
     document.body.appendChild(overlay);
 
     overlay.addEventListener('click', (event) => {
@@ -50,7 +51,7 @@ function closePopup() {
     projectPopup.style.display = 'none';
     popupVideo.pause(); 
     popupVideo.src = ''; 
-    document.body.style.overflow = ''; // Restore scrolling
+    document.body.style.overflow = '';
     const overlay = document.getElementById('popup-overlay');
     if (overlay) {
         overlay.remove();
