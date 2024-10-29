@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
             "Attention to detail": "Atenção aos Detalhes",
             "AI-Enhanced Productivity": "Produtividade Aprimorada por IA",
             "Skills Acquired": "Habilidades adquiridas",
-            "Data Science": "Ciência de Dados",
+            "Data Science": "Ciencia de Dados",
             "Design Patterns": "Padrões de Design",
             "Skills Acquired:": "Habilidades Adquiridas:",
             "Skill":"Habilidade",
