@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
             "Back-End Developer":"Desenvolvedor Back-End",
             "About Me": "Sobre Mim",
             "Download Resume": "Baixar Curriculo",
-            "I am a dedicated back-end developer with a strong interest in the financial and technological markets. Passionate about artificial intelligence, I am also a keen self-learner, continuously seeking to expand my knowledge and skills in this dynamic field. My enthusiasm for technology drives me to explore new challenges and innovate in the ever-evolving landscape of programming.":
-                "Sou um programador back-end dedicado com um forte interesse nos mercados financeiro e tecnológico. Apaixonado por inteligência artificial, sou também um aprendiz autodidata, buscando continuamente expandir meu conhecimento e habilidades neste campo dinâmico. Meu entusiasmo por tecnologia me motiva a buscar novos desafios e criar soluções inovadoras, acompanhando as mudanças constantes no mundo da programação",
+            "I am a Data Science student with a strong passion for back-end development, financial markets, and technology. Enthusiastic about artificial intelligence, I am a keen self-learner, always seeking to expand my knowledge and skills in this dynamic field. My love for technology drives me to explore new challenges and innovate in the ever-evolving landscape of programming.":
+                "Sou estudante de Ciência de Dados, com grande interesse em desenvolvimento back-end, mercados financeiros e tecnologia. Apaixonado por inteligência artificial, sou um autodidata motivado, sempre buscando expandir meus conhecimentos e habilidades nessa área dinâmica. Minha paixão pela tecnologia me impulsiona a explorar novos desafios e inovar no cenário em constante evolução da programação.",
             "Certificated Skills": "Cursos certificados",
             "Soft Skills":"Habilidades",
             "Programming Languages": "Linguagens de Programação",
@@ -78,7 +78,8 @@ document.addEventListener('DOMContentLoaded', function () {
             'Show more': 'Mais detalhes',
             "Github Repository": "Repositorio do Github",
             "All": "Todos",
-            "View more": "Mais projetos"
+            "View more": "Mais projetos",
+            "Version Control": "Versionamento de Código"
         },
         
         en: {
@@ -92,8 +93,8 @@ document.addEventListener('DOMContentLoaded', function () {
             "Desenvolvedor Back-End":"Back-End Developer",
             "Sobre Mim": "About Me",
             "Baixar Curriculo": "Download Resume",
-            "Sou um programador back-end dedicado com um forte interesse nos mercados financeiro e tecnológico. Apaixonado por inteligência artificial, sou também um aprendiz autodidata, buscando continuamente expandir meu conhecimento e habilidades neste campo dinâmico. Meu entusiasmo por tecnologia me motiva a buscar novos desafios e criar soluções inovadoras, acompanhando as mudanças constantes no mundo da programação":
-                "I am a dedicated back-end developer with a strong interest in the financial and technological markets. Passionate about artificial intelligence, I am also a keen self-learner, continuously seeking to expand my knowledge and skills in this dynamic field. My enthusiasm for technology drives me to explore new challenges and innovate in the ever-evolving landscape of programming.",
+            "Sou estudante de Ciência de Dados, com grande interesse em desenvolvimento back-end, mercados financeiros e tecnologia. Apaixonado por inteligência artificial, sou um autodidata motivado, sempre buscando expandir meus conhecimentos e habilidades nessa área dinâmica. Minha paixão pela tecnologia me impulsiona a explorar novos desafios e inovar no cenário em constante evolução da programação.":
+                "I am a Data Science student with a strong passion for back-end development, financial markets, and technology. Enthusiastic about artificial intelligence, I am a keen self-learner, always seeking to expand my knowledge and skills in this dynamic field. My love for technology drives me to explore new challenges and innovate in the ever-evolving landscape of programming.",
             "Cursos certificados": "Certificated Skills",
             "Habilidades":"Soft Skills",
             "Linguagens de Programação": "Programming Languages",
@@ -155,7 +156,8 @@ document.addEventListener('DOMContentLoaded', function () {
             "Mais detalhes": "Show more",
             "Repositorio do Github": "Github Repository",
             "Todos": "All",
-            "Mais projetos": "View more"
+            "Mais projetos": "View more",
+            "Versionamento de Código": "Version Control"
         }
 };
     
