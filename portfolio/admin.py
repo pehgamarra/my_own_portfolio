@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Skill, Project
+from .models import Skill, Project, Dashboard
 from cloudinary.forms import CloudinaryFileField
 
 @admin.register(Skill)
@@ -26,3 +26,13 @@ class ProjectAdmin(admin.ModelAdmin):
         if db_field.name in ['video', 'thumbnail']:
             kwargs['widget'] = admin.widgets.AdminFileWidget
         return super().formfield_for_dbfield(db_field, **kwargs)
+
+@admin.register(Dashboard)
+class DashboardAdmin(admin.ModelAdmin):
+    list_display = ('title', 'title_pt')
+    search_fields = ('title', 'title_pt', 'description', 'description_pt')
+    fieldsets = (
+        (None, {
+            'fields': ('title', 'title_pt', 'description', 'description_pt', 'embed_url', 'thumbnail')
+        }),
+    )

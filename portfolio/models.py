@@ -34,3 +34,22 @@ class Project(models.Model):
 
     def get_thumbnail_url(self):
         return self.thumbnail.url if self.thumbnail else None
+
+class Dashboard(models.Model):
+    title = models.CharField(max_length=200)
+    title_pt = models.CharField(max_length=200, blank=True, verbose_name="Título em Português")
+    description = models.TextField(blank=True)
+    description_pt = models.TextField(blank=True, verbose_name="Descrição em Português")
+    embed_url = models.URLField()
+    thumbnail = CloudinaryField('image', blank=True, null=True)
+
+    def get_title(self):
+        from django.utils.translation import get_language
+        return self.title_pt if get_language() == 'pt' and self.title_pt else self.title
+
+    def get_description(self):
+        from django.utils.translation import get_language
+        return self.description_pt if get_language() == 'pt' and self.description_pt else self.description
+
+    def get_thumbnail_url(self):
+        return self.thumbnail.url if self.thumbnail else None

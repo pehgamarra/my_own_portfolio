@@ -1,0 +1,80 @@
+.project-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #121212;
+    border: 2px solid #ffc107;
+    border-radius: 12px;
+    z-index: 1000;
+    padding: 20px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    color: #f1f1f1;
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.4);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.popup-content {
+    position: relative;
+}
+
+#popupIframe {
+    width: 100%;
+    height: 400px;
+    border-radius: 8px;
+    border: none;
+}
+
+#popupInfo {
+    padding-top: 10px;
+}
+
+#popupDashboardTitle {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+}
+
+#popupDashboardDescription {
+    font-size: 1rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+#popupDashboardLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #ffc107;
+    color: #121212;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 12px;
+    transition: background-color 0.2s ease;
+}
+
+#popupDashboardLink:hover {
+    background-color: #e0a800;
+}
+
+#dashboardPopupClose {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #f1f1f1;
+    transition: color 0.2s ease;
+}
+
+#dashboardPopupClose:hover {
+    color: #ffc107;
+}

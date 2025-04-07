@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Project, Skill
+from .models import Project, Skill, Dashboard
 
 def home(request):
     featured_projects = Project.objects.filter(featured=True)[:3]
@@ -27,3 +27,10 @@ def projects(request):
         'lang': lang
     }
     return render(request, 'portfolio/projects.html', context)
+
+def dashboards(request):
+    dashboards = Dashboard.objects.all()
+    lang = request.GET.get('lang', 'en')
+
+    return render(request, 'portfolio/dashboards.html', {'dashboards': dashboards})
+

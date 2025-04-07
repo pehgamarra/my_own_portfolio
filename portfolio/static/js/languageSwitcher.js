@@ -79,7 +79,8 @@ document.addEventListener('DOMContentLoaded', function () {
             "Github Repository": "Repositorio do Github",
             "All": "Todos",
             "View more": "Mais projetos",
-            "Version Control": "Versionamento de Código"
+            "Version Control": "Versionamento de Código",
+            "Open Dashboard" :"Abrir Dashboard"
         },
         
         en: {
@@ -157,14 +158,15 @@ document.addEventListener('DOMContentLoaded', function () {
             "Repositorio do Github": "Github Repository",
             "Todos": "All",
             "Mais projetos": "View more",
-            "Versionamento de Código": "Version Control"
+            "Versionamento de Código": "Version Control",
+            "Abrir Dashboard" : "Open Dashboard"
         }
 };
     
 
     let currentLanguage = 'en';
 
-    function updateTranslations() {
+    function translateTextContent() {
         document.querySelectorAll('[data-translate]').forEach(element => {
             const key = element.innerText.trim();
             if (translations[currentLanguage][key]) {
@@ -174,38 +176,61 @@ document.addEventListener('DOMContentLoaded', function () {
                         skillName.textContent = translations[currentLanguage][key];
                     }
                 } else {
-                    element.innerHTML = translations[currentLanguage][key];
+                    element.textContent = translations[currentLanguage][key];
                 }
-            }
-        });
-
-        document.querySelectorAll('.project-card').forEach(card => {
-            const title = card.querySelector('.project-title');
-            const description = card.querySelector('.project-description');
-
-            if (currentLanguage === 'pt') {
-                title.textContent = title.getAttribute('data-title-pt') || title.textContent;
-                description.textContent = description.getAttribute('data-description-pt') || description.textContent;
-            } else {
-                title.textContent = title.getAttribute('data-title-en') || title.textContent;
-                description.textContent = description.getAttribute('data-description-en') || description.textContent;
             }
         });
     }
 
-    englishButton.addEventListener('click', function () {
-        currentLanguage = 'en';
-        updateTranslations();
+    function translateTitlesAndDescriptions(selector, titleClass, descriptionClass) {
+        document.querySelectorAll(selector).forEach(card => {
+            const title = card.querySelector(`.${titleClass}`);
+            const description = card.querySelector(`.${descriptionClass}`);
+
+            if (title) {
+                const newTitle = title.getAttribute(`data-title-${currentLanguage}`);
+                if (newTitle) title.textContent = newTitle;
+            }
+
+            if (description) {
+                const newDesc = description.getAttribute(`data-description-${currentLanguage}`);
+                if (newDesc) description.textContent = newDesc;
+            }
+        });
+    }
+
+    function updateTranslations() {
+        translateTextContent();
+        translateTitlesAndDescriptions('.project-card', 'project-title', 'project-description');
+        translateTitlesAndDescriptions('.dashboard-card', 'dashboard-title', 'dashboard-description');
+
+        const popupTitle = document.getElementById('popupDashboardTitle');
+        const popupDesc = document.getElementById('popupDashboardDescription');
+
+        if (popupTitle && popupTitle.hasAttribute(`data-title-${currentLanguage}`)) {
+            popupTitle.textContent = popupTitle.getAttribute(`data-title-${currentLanguage}`);
+        }
+
+        if (popupDesc && popupDesc.hasAttribute(`data-description-${currentLanguage}`)) {
+            popupDesc.textContent = popupDesc.getAttribute(`data-description-${currentLanguage}`);
+        }
+    }
+
+    englishButton?.addEventListener('click', function () {
+        switchLanguage('en');
     });
 
-    portugueseButton.addEventListener('click', function () {
-        currentLanguage = 'pt';
-        updateTranslations();
+    portugueseButton?.addEventListener('click', function () {
+        switchLanguage('pt');
     });
 
     window.getCurrentLanguage = () => currentLanguage;
-    window.switchLanguage = function(lang) {
+
+    window.switchLanguage = function (lang) {
         currentLanguage = lang;
         updateTranslations();
     };
-});
+
+    const initialLang = document.documentElement.getAttribute('lang') || 'en';
+    switchLanguage(initialLang);
+    });
