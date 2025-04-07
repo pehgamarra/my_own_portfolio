@@ -6,31 +6,31 @@
 
 {% block content %}
 <div class="container main-container">
-    <div id="projects-section">
+    <div id="dashboard-section">
         <h2 data-translate="Dashboards">Dashboards</h2>
 
-        <div class="project-container">
+        <div class="dashboard-container">
             {% for dashboard in dashboards %}
-            <div class="project-card"
+            <div class="dashboard-card"
                 data-url="{{ dashboard.embed_url }}"
                 data-title="{{ dashboard.get_title }}"
                 data-description="{{ dashboard.get_description }}"
                 data-link="{{ dashboard.external_link|default:'' }}">
                 
-                <div class="project-image">
+                <div class="dashboard-image">
                     <img src="{{ dashboard.get_thumbnail_url }}" alt="{{ dashboard.get_title }}">
                     <div class="overlay">
                         <span class="overlay-text" data-translate="Mais detalhes">Show more</span>
                     </div>
                 </div>                   
 
-                <h3 class="project-title dashboard-title"
+                <h3 class="dashboard-title dashboard-title"
                     data-title-pt="{{ dashboard.title_pt }}"
                     data-title-en="{{ dashboard.title }}">
                     {{ dashboard.get_title }}
                 </h3>
 
-                <p class="project-description dashboard-description"
+                <p class="dashboard-description dashboard-description"
                     data-description-pt="{{ dashboard.description_pt }}"
                     data-description-en="{{ dashboard.description }}"
                     style="display:none;">
@@ -43,7 +43,7 @@
         </div>
 
         <!-- Popup Dashboard Details -->
-        <div id="dashboardPopup" class="project-popup" style="display: none;">
+        <div id="dashboardPopup" class="dashboard-popup" style="display: none;">
             <div class="popup-content">
                 <span class="close" id="dashboardPopupClose">&times;</span>
                 <iframe id="popupIframe"></iframe>
