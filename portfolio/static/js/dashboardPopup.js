@@ -7,8 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const dashboardPopupClose = document.getElementById('dashboardPopupClose');
 
     function openDashboardPopup(url, title, description, externalLink, titlePt, descPt) {
-        if (!popupIframe || !popupDashboardTitle || !popupDashboardDescription || !dashboardPopup) return;
-
         popupIframe.src = url;
 
         popupDashboardTitle.innerText = title;
@@ -20,10 +18,10 @@ document.addEventListener('DOMContentLoaded', function () {
         popupDashboardDescription.setAttribute('data-description-en', description);
         popupDashboardDescription.setAttribute('data-description-pt', descPt || description);
 
-        if (externalLink && popupDashboardLink) {
+        if (externalLink) {
             popupDashboardLink.href = externalLink;
             popupDashboardLink.style.display = 'inline-block';
-        } else if (popupDashboardLink) {
+        } else {
             popupDashboardLink.style.display = 'none';
         }
 
@@ -32,15 +30,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const overlay = document.createElement('div');
         overlay.id = 'dashboard-popup-overlay';
-        overlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        `;
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        overlay.style.zIndex = '999';
         document.body.appendChild(overlay);
 
         overlay.addEventListener('click', (event) => {
@@ -51,24 +47,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (typeof getCurrentLanguage === 'function') {
             const lang = getCurrentLanguage();
-            window.switchLanguage?.(lang);
+            window.switchLanguage(lang);
         }
     }
 
     function closeDashboardPopup() {
-        if (!dashboardPopup || !popupIframe) return;
-
         dashboardPopup.style.display = 'none';
         popupIframe.src = '';
         document.body.style.overflow = '';
-
         const overlay = document.getElementById('dashboard-popup-overlay');
-        if (overlay) overlay.remove();
+        if (overlay) {
+            overlay.remove();
+        }
     }
 
-    if (dashboardPopupClose) {
-        dashboardPopupClose.addEventListener('click', closeDashboardPopup);
-    }
+    dashboardPopupClose.addEventListener('click', closeDashboardPopup);
 
     document.addEventListener('click', function (event) {
         const card = event.target.closest('.project-card');
