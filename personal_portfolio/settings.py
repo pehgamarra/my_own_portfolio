@@ -29,7 +29,7 @@ if not SECRET_KEY:
     raise ImproperlyConfigured("DJANGO_SECRET_KEY must be set in .env file")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['pehgamarra.pythonanywhere.com']
 
@@ -124,7 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR / 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -138,6 +138,9 @@ try:
     from .local_settings import *
 except ImportError:
     print ("Looks like no local file. You must be on production")
+
+CLOUDINARY_URL = f"cloudinary://{os.environ.get('CLOUDINARY_API_KEY')}:{os.environ.get('CLOUDINARY_API_SECRET')}@{os.environ.get('CLOUDINARY_CLOUD_NAME')}"
+
 
 config(
     cloud_name = os.environ.get('CLOUDINARY_CLOUD_NAME'),
