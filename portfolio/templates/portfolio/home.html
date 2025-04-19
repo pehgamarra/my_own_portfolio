@@ -113,39 +113,38 @@
             <!-- Dashboards Section -->
             <div id="projects-section">
                 <h2 data-translate="Dashboards">Dashboards</h2>
+        
                 <div class="project-container">
                     {% for dashboard in dashboards %}
                     <div class="project-card"
-                        data-url="{{ dashboard.embed_url }}"
+                        data-url="{{ dashboard.get_embed_url }}"
                         data-title="{{ dashboard.get_title }}"
                         data-description="{{ dashboard.get_description }}"
                         data-link="{{ dashboard.external_link|default:'' }}">
                         
-                        <div class="project-image">
-                            <img src="{{ dashboard.get_thumbnail_url }}" alt="{{ dashboard.get_title }}">
+                        
+                        <div class="project-image"
+                        onclick="window.open('{{ dashboard.get_embed_url }}', '_blank')"     >
+                            <img src="{{ dashboard.get_thumbnail_url }}" 
+                            alt="{{ dashboard.get_title }}"                       
+                           >
                             <div class="overlay">
-                                <span class="overlay-text" data-translate="Mais detalhes">Show more</span>
+                                <span class="overlay-text" data-translate="Mais detalhes">Open Dashboard</span>
                             </div>
                         </div>                   
         
-                        <h3 class="project-title dashboard-title"
+                        <h3 class="project-title"
                             data-title-pt="{{ dashboard.title_pt }}"
                             data-title-en="{{ dashboard.title }}">
                             {{ dashboard.get_title }}
                         </h3>
-        
-                        <p class="project-description dashboard-description"
-                            data-description-pt="{{ dashboard.description_pt }}"
-                            data-description-en="{{ dashboard.description }}"
-                            style="display:none;">
-                            {{ dashboard.get_description }}
-                        </p>
+
                     </div>
                     {% empty %}
                         <p data-translate="Nenhum dashboard encontrado">No dashboards found.</p>
                     {% endfor %}
                 </div>
-
+        
                 <!-- "View more" button -->
                 <div class="text-center mt-4">
                     <a href="{% url 'dashboards' %}" class="btn-view-more">
@@ -155,21 +154,6 @@
                 </div>
             </div>
 
-            <!-- Popup for Dashboard Details -->
-            <div id="dashboardPopup" class="dashboard-popup" style="display: none;">
-                <div class="popup-content">
-                    <span class="close" id="dashboardPopupClose">&times;</span>
-                    <iframe id="popupIframe" src="" frameborder="0"></iframe>
-                    <div id="popupInfo">
-                        <h3 id="popupDashboardTitle"></h3>
-                        <p id="popupDashboardDescription"></p>
-                        <a id="popupDashboardLink" href="#" target="_blank" style="display: none;">
-                            <span data-translate="Abrir Dashboard">Open Dashboard</span>
-                            <i class="bi bi-link-45deg"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
 
             
             <!-- Certificates Section -->

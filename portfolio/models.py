@@ -43,6 +43,7 @@ class Dashboard(models.Model):
     embed_url = models.URLField()
     thumbnail = CloudinaryField('image', blank=True, null=True)
     featured = models.BooleanField(default=False, verbose_name="Destaque")
+
     
     def get_title(self):
         from django.utils.translation import get_language
@@ -54,3 +55,6 @@ class Dashboard(models.Model):
 
     def get_thumbnail_url(self):
         return self.thumbnail.url if self.thumbnail else None
+    
+    def get_embed_url(self):
+        return self.embed_url if self.embed_url else None

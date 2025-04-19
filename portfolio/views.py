@@ -33,9 +33,10 @@ def projects(request):
 def dashboards(request):
     dashboards = Dashboard.objects.all()
     lang = request.GET.get('lang', 'en')
+
     context = {
         'dashboards': dashboards,
-        'lang': lang
+        'lang': lang,
     }
 
     return render(request, 'portfolio/dashboards.html', context)

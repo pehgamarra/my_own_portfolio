@@ -78,3 +78,14 @@
 #dashboardPopupClose:hover {
     color: #ffc107;
 }
+
+.dashboard-card {
+    width: 360px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #cfa266;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}

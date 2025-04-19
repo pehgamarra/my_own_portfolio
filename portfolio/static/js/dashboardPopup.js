@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
     dashboardPopupClose.addEventListener('click', closeDashboardPopup);
 
     document.addEventListener('click', function (event) {
-        const card = event.target.closest('.project-card');
+        const card = event.target.closest('.dashboard-card');
         if (!card) return;
 
         const url = card.dataset.url;

@@ -9,7 +9,7 @@ class SkillAdmin(admin.ModelAdmin):
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('title', 'date', 'github_link', 'featured')
-    list_filter = ('featured', 'skills')
+    list_filter = ('featured',)
     list_editable = ('featured',) 
     filter_horizontal = ('skills',)
     fieldsets = (
@@ -30,11 +30,11 @@ class ProjectAdmin(admin.ModelAdmin):
 @admin.register(Dashboard)
 class DashboardAdmin(admin.ModelAdmin):
     list_display = ('title','description_pt', 'featured')
-    search_fields = ('title', 'title_pt', 'description', 'description_pt', 'featured')
+    search_fields = ('title', 'title_pt', 'description', 'description_pt', 'featured',)
     filter_horizontal = ()
 
     fieldsets = (
         (None, {
-            'fields': ('title', 'title_pt', 'description', 'description_pt', 'embed_url', 'thumbnail','featured') 
+            'fields': ('title', 'title_pt', 'description', 'description_pt', 'embed_url', 'thumbnail','featured',) 
         }),
     )
