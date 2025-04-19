@@ -3,9 +3,11 @@ from .models import Project, Skill, Dashboard
 
 def home(request):
     featured_projects = Project.objects.filter(featured=True)[:3]
+    featured_dashboards = Dashboard.objects.filter(featured=True)[:3]
     lang = request.GET.get('lang', 'en')
     context = {
         'projects': featured_projects,
+        'dashboards': featured_dashboards,
         'lang': lang,
     }
     return render(request, 'portfolio/home.html', context)
@@ -31,6 +33,10 @@ def projects(request):
 def dashboards(request):
     dashboards = Dashboard.objects.all()
     lang = request.GET.get('lang', 'en')
+    context = {
+        'dashboards': dashboards,
+        'lang': lang
+    }
 
-    return render(request, 'portfolio/dashboards.html', {'dashboards': dashboards})
+    return render(request, 'portfolio/dashboards.html', context)
 

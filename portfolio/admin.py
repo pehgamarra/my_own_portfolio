@@ -29,10 +29,12 @@ class ProjectAdmin(admin.ModelAdmin):
 
 @admin.register(Dashboard)
 class DashboardAdmin(admin.ModelAdmin):
-    list_display = ('title', 'title_pt')
-    search_fields = ('title', 'title_pt', 'description', 'description_pt')
+    list_display = ('title','description_pt', 'featured')
+    search_fields = ('title', 'title_pt', 'description', 'description_pt', 'featured')
+    filter_horizontal = ()
+
     fieldsets = (
         (None, {
-            'fields': ('title', 'title_pt', 'description', 'description_pt', 'embed_url', 'thumbnail')
+            'fields': ('title', 'title_pt', 'description', 'description_pt', 'embed_url', 'thumbnail','featured') 
         }),
     )

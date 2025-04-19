@@ -42,7 +42,8 @@ class Dashboard(models.Model):
     description_pt = models.TextField(blank=True, verbose_name="Descrição em Português")
     embed_url = models.URLField()
     thumbnail = CloudinaryField('image', blank=True, null=True)
-
+    featured = models.BooleanField(default=False, verbose_name="Destaque")
+    
     def get_title(self):
         from django.utils.translation import get_language
         return self.title_pt if get_language() == 'pt' and self.title_pt else self.title

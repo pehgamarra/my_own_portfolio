@@ -104,12 +104,74 @@
                             <a id="popupGitHubLink" href="#" target="_blank">
                                 <span data-translate="Repositorio do Github">GitHub Repository</span>
                                 <i class="bi bi-link-45deg"></i>
-                            </a>
+                            </a> 
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Dashboards Section -->
+            <div id="projects-section">
+                <h2 data-translate="Dashboards">Dashboards</h2>
+                <div class="project-container">
+                    {% for dashboard in dashboards %}
+                    <div class="project-card"
+                        data-url="{{ dashboard.embed_url }}"
+                        data-title="{{ dashboard.get_title }}"
+                        data-description="{{ dashboard.get_description }}"
+                        data-link="{{ dashboard.external_link|default:'' }}">
+                        
+                        <div class="project-image">
+                            <img src="{{ dashboard.get_thumbnail_url }}" alt="{{ dashboard.get_title }}">
+                            <div class="overlay">
+                                <span class="overlay-text" data-translate="Mais detalhes">Show more</span>
+                            </div>
+                        </div>                   
+        
+                        <h3 class="project-title dashboard-title"
+                            data-title-pt="{{ dashboard.title_pt }}"
+                            data-title-en="{{ dashboard.title }}">
+                            {{ dashboard.get_title }}
+                        </h3>
+        
+                        <p class="project-description dashboard-description"
+                            data-description-pt="{{ dashboard.description_pt }}"
+                            data-description-en="{{ dashboard.description }}"
+                            style="display:none;">
+                            {{ dashboard.get_description }}
+                        </p>
+                    </div>
+                    {% empty %}
+                        <p data-translate="Nenhum dashboard encontrado">No dashboards found.</p>
+                    {% endfor %}
+                </div>
+
+                <!-- "View more" button -->
+                <div class="text-center mt-4">
+                    <a href="{% url 'dashboards' %}" class="btn-view-more">
+                        <span data-translate="Mais dashboards">View more</span>
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Popup for Dashboard Details -->
+            <div id="dashboardPopup" class="dashboard-popup" style="display: none;">
+                <div class="popup-content">
+                    <span class="close" id="dashboardPopupClose">&times;</span>
+                    <iframe id="popupIframe" src="" frameborder="0"></iframe>
+                    <div id="popupInfo">
+                        <h3 id="popupDashboardTitle"></h3>
+                        <p id="popupDashboardDescription"></p>
+                        <a id="popupDashboardLink" href="#" target="_blank" style="display: none;">
+                            <span data-translate="Abrir Dashboard">Open Dashboard</span>
+                            <i class="bi bi-link-45deg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            
             <!-- Certificates Section -->
             <div id="certificates-section" class="certificates-section">
                 <div class="container text-center">
@@ -140,12 +202,12 @@
                         </div>
                         <div class="col-4 col-md-2 mb-3">
                             <div class="certificate-card" data-toggle="modal" data-target="#certificateModal" 
-                                 data-images="{% static 'portfolio/Certificate_Java.png' %}" 
-                                 data-skills="Core Java fundamentals, Object-oriented programming principles, Multithreading and concurrency, Java Collections Framework, Exception handling and debugging, Java 8+ features (Lambdas/Streams)"
-                                 data-skills-translated="Fundamentos básicos de Java, Princípios de programação orientada a objetos, Multithreading e concorrência, Framework de Coleções Java, Tratamento de exceções e depuração, Recursos do Java 8+ (Lambdas/Streams)">
+                                 data-images=" {% static 'portfolio/Certificate_PowerBI3.png' %} | {% static 'portfolio/Certificate_PowerBI2.png' %} | {% static 'portfolio/Certificate_PowerBI1.png' %} | {% static 'portfolio/Certificate_Dashboard.png' %}" 
+                                 data-skills="Power Query (ETL), DAX (Data Analysis Expressions), Data Modeling, Dashboard Creation, KPI Development, Data Visualization, Business Intelligence, Data Analysis, Report Development, Data Relationships"
+                                 data-skills-translated="Power Query (ETL), DAX (Expressões de Análise de Dados), Modelagem de Dados, Criação de Dashboards, Desenvolvimento de KPIs, Visualização de Dados, Business Intelligence, Análise de Dados, Desenvolvimento de Relatórios, Relacionamentos de Dados">
                                 <div class="certificated-icon">
-                                    <i class="devicon-java-plain"></i>
-                                    <span>Java</span>
+                                    <i class="fas fa-chart-bar"></i>
+                                    <span data-translate="Power BI">Power BI</span>
                                 </div>
                             </div>
                         </div>
@@ -195,23 +257,23 @@
                         </div>
                         <div class="col-4 col-md-2 mb-3">
                             <div class="certificate-card" data-toggle="modal" data-target="#certificateModal" 
-                                 data-images="{% static 'portfolio/Certificate_PowerBI2.png' %} | {% static 'portfolio/Certificate_PowerBI1.png' %} | {% static 'portfolio/Certificate_Dashboard.png' %}" 
-                                 data-skills="Power Query (ETL), DAX (Data Analysis Expressions), Data Modeling, Dashboard Creation, KPI Development, Data Visualization, Business Intelligence, Data Analysis, Report Development, Data Relationships"
-                                 data-skills-translated="Power Query (ETL), DAX (Expressões de Análise de Dados), Modelagem de Dados, Criação de Dashboards, Desenvolvimento de KPIs, Visualização de Dados, Business Intelligence, Análise de Dados, Desenvolvimento de Relatórios, Relacionamentos de Dados">
-                                <div class="certificated-icon">
-                                    <i class="fas fa-chart-bar"></i>
-                                    <span data-translate="Power BI">Power BI</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4 col-md-2 mb-3">
-                            <div class="certificate-card" data-toggle="modal" data-target="#certificateModal" 
                                  data-images="{% static 'portfolio/Certificate_DP.jpg' %}" 
                                  data-skills="Creational patterns (Singleton/Factory/Builder), Structural patterns (Adapter/Decorator/Facade), Behavioral patterns (Observer/Strategy/Command), SOLID principles, Design pattern implementation in Python & Java, Anti-patterns and when to avoid certain patterns"
                                  data-skills-translated="Padrões criacionais (Singleton/Factory/Builder), Padrões estruturais (Adapter/Decorator/Facade), Padrões comportamentais (Observer/Strategy/Command), Princípios SOLID, Implementação de padrões de design em Python e Java, Anti-padrões e quando evitar certos padrões">
                                 <div class="certificated-icon">
                                     <i class="fas fa-cogs"></i>
                                     <span data-translate="Padrões de Design">Design Patterns</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-2 mb-3">
+                            <div class="certificate-card" data-toggle="modal" data-target="#certificateModal" 
+                                 data-images="{% static 'portfolio/Certificate_Java.png' %}" 
+                                 data-skills="Core Java fundamentals, Object-oriented programming principles, Multithreading and concurrency, Java Collections Framework, Exception handling and debugging, Java 8+ features (Lambdas/Streams)"
+                                 data-skills-translated="Fundamentos básicos de Java, Princípios de programação orientada a objetos, Multithreading e concorrência, Framework de Coleções Java, Tratamento de exceções e depuração, Recursos do Java 8+ (Lambdas/Streams)">
+                                <div class="certificated-icon">
+                                    <i class="devicon-java-plain"></i>
+                                    <span>Java</span>
                                 </div>
                             </div>
                         </div>
@@ -277,7 +339,7 @@
                                 </div>
                             </li>
                             <li class="skill-item">
-                                <span class="skill-name" data-translate="MySQL">MySQL</span>
+                                <span class="skill-name" data-translate="SQL">SQL</span>
                                 <div class="skill-rating">
                                     <span class="skill-circle" data-level="1"></span>
                                     <span class="skill-circle" data-level="2"></span>
